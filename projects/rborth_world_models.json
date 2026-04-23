@@ -2,7 +2,7 @@
   "title": "Enhancing Latent World Models with Geometric Priors",
   "supervisor": {
     "name": "Robin Borth",
-    "href": "https://www.niessnerlab.org/members/robin_borth/profile.html"
+    "href": "https://robinborth.com/"
   },
   "email": "robin.borth@tum.de",
   "teaser": "This project investigates whether injecting explicit 3D geometric priors (via depth maps from foundation models like DepthAnythingV3, or stereo/multi-view inputs) improves physical reasoning. The resulting latent representations will be evaluated with linear probing on kinematic targets such as the 3D position of a robotic arm in simulation.",
