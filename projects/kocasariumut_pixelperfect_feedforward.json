@@ -1,0 +1,30 @@
+{
+  "title": "Pixel-Perfect Feed-Forward 3D Reconstruction",
+  "supervisor": {
+    "name": "Umut Kocasari",
+    "href": "https://kocasariumut.github.io/"
+  },
+  "email": "umut.kocasar@tum.de",
+  "teaser": "This project develops a fast, feed-forward multi-view 3D reconstruction framework that delivers pixel-accurate, clean, and geometrically consistent scene representations from images. By integrating uncertainty-aware depth refinement and artifact detection, it aims to eliminate common issues like flying pixels and blurred details, enabling reliable, high-fidelity reconstructions for real-world applications.",
+  "abstract": "This project aims to develop a pixel-accurate multi-view 3D reconstruction framework that produces clean, detailed, and geometrically consistent scene representations from image observations. High-quality reconstruction is critical for applications such as robotics, augmented reality, and immersive simulation, where even small geometric errors can degrade downstream performance. However, many existing reconstruction methods still exhibit artifacts such as flying pixels, blurred boundaries, and the loss of fine-scale structures. By prioritizing pixel-level accuracy, this work seeks to generate sharper depth estimates and more faithful point clouds, preserving both global scene layout and subtle geometric details. The proposed approach builds on a feed-forward reconstruction paradigm using DA3/VGGT, enabling efficient geometry prediction directly from multi-view inputs in a single forward pass. This design emphasizes robustness, scalability, and practical deployment while maintaining strong cross-view consistency. Through uncertainty mask prediction and depth correction, the project aims to deliver reliable 3D reconstructions without relying on iterative optimization or generative modeling, ultimately supporting real-world systems that require accurate and computationally efficient spatial understanding.",
+  "milestones": [
+    "Install the environment and run the baseline method on Scannet++ dataset", 
+    "Implement the data loader and preprocess the data to make it suitable for training",
+    "Implement the training code and change the architecture of the network so that it could produce uncertainty masks",
+    "Detect the flying pixels automatically during forward pass with an additional uncertainty mask prediction head",
+    "Bonus: Improve the depth predictions by implementing a depth corrective module"
+  ],
+  "prerequisites": [
+    { "label": "Introduction to Deep Learning (I2DL)", "href": "https://niessner.github.io/I2DL/" },
+    { "label": "Advanced Deep Learning for Computer Vision: Visual Computing (ADL4CV)", "href": "https://niessner.github.io/ADL4CV/" },
+    { "label": "3D Scanning & Motion Capture (3DSMC)", "href": "https://niessner.github.io/3DScanning/" }
+  ],
+  "references": [
+    { "label": "Pixel-Perfect Visual Geometry Estimation", "href": "https://arxiv.org/pdf/2601.05246",
+      "label": "Depth Anything 3: Recovering the Visual Space from Any Views", "href": "https://arxiv.org/pdf/2511.10647",
+      "label": "VGGT: Visual Geometry Grounded Transformer", "href": "https://arxiv.org/pdf/2503.11651" }
+  ],
+  "tags": ["Feed-Forward Reconstruction", "Multi-View 3D Reconstruction", "Depth Refinement"],
+  "type": ["IDP", "Master Thesis", "Guided Research"],
+  "state": "open"
+}
