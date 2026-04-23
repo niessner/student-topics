@@ -70,9 +70,7 @@ figure from a related paper, or a result from your own experiments. Save it as
 `assets/<slug>.jpg` (aim for **16:9**, e.g. 1920×1080). The current teaser
 images in `assets/` were generated with **GPT Images 2.0**.
 
-If you want a quick option, **Gemini 2.5 Flash Image** (nicknamed *Nano
-Banana*, in the Gemini app or API) works well. Use the prompt template below,
-fill in the `<placeholders>` for your method, and **eyeball the output before
+Use the prompt template below, fill in the `<placeholders>` for your method, and **eyeball the output before
 committing it** — a bad teaser is worse than no teaser.
 
 **Fastest workflow — let an LLM fill the template for you:**
@@ -82,8 +80,7 @@ committing it** — a bad teaser is worse than no teaser.
 3. Paste both into Claude (or Gemini) and say:
    > *"Fill the placeholders in the prompt template using the method details
    > from this JSON file. Return only the completed prompt — no commentary."*
-4. Paste the completed prompt into an image model — **Gemini 2.5 Flash Image
-   (Nano Banana)** — to generate the teaser.
+4. Paste the completed prompt into an image model — **GPT Images 2.0** — to generate the teaser.
 
 This keeps the visual style consistent across topics (the `Style:` block stays
 untouched) while the method-specific content comes straight from the JSON.
