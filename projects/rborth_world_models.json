@@ -1,0 +1,29 @@
+{
+  "title": "Enhancing Latent World Models with Geometric Priors",
+  "supervisor": {
+    "name": "Robin Borth",
+    "href": "https://www.niessnerlab.org/members/robin_borth/profile.html"
+  },
+  "email": "robin.borth@tum.de",
+  "teaser": "This project investigates whether injecting explicit 3D geometric priors (via depth maps from foundation models like DepthAnythingV3, or stereo/multi-view inputs) improves physical reasoning. The resulting latent representations will be evaluated with linear probing on kinematic targets such as the 3D position of a robotic arm in simulation.",
+  "abstract": "Joint Embedding Predictive Architectures (JEPAs), such as the highly efficient LeWorldModel, learn powerful world models by predicting latent states directly from raw pixels. This project explores whether injecting explicit 3D geometric priors - by replacing standard 2D pixel supervision with depth maps from foundation models like DepthAnythingV3, or by integrating stereo and multi-view sensory inputs - can fundamentally improve a model's physical reasoning. To measure the effectiveness of these 3D-enhanced representations, we will evaluate the latent space using linear probing to predict precise kinematic properties, such as the 3D position of a robotic arm in a simulated environment.",
+  "milestones": [
+    "Setup a physics simulation environment (e.g., Gymnasium) and run the LeWorldModel baseline.",
+    "Extend the environment to support multi-view camera setups and extract depth maps alongside camera parameters.",
+    "Modify the LeWorldModel architecture and loss functions to integrate 3D geometric supervision.",
+    "Perform linear probing to evaluate the latent space's ability to capture physical properties."
+  ],
+  "prerequisites": [
+    { "label": "Introduction to Deep Learning (I2DL)", "href": "https://niessner.github.io/I2DL/" },
+    { "label": "Advanced Deep Learning for Computer Vision: Visual Computing (ADL4CV)", "href": "https://niessner.github.io/ADL4CV/" },
+    { "label": "3D Scanning & Motion Capture (3DSMC)", "href": "https://niessner.github.io/3DScanning/" }
+  ],
+  "references": [
+    { "label": "LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from Pixels", "href": "https://le-wm.github.io/" },
+    { "label": "V-JEPA 2: Self-Supervised Video Models Enable Understanding, Prediction and Planning", "href": "https://arxiv.org/pdf/2506.09985" },
+    { "label": "Depth Anything 3: Recovering the Visual Space from Any Views", "href": "https://arxiv.org/pdf/2511.10647" }
+  ],
+  "tags": ["World Models", "3D Representation Learning"],
+  "type": ["Master Thesis", "Guided Research"],
+  "state": "open"
+}

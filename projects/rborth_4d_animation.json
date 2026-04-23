@@ -1,0 +1,29 @@
+{
+  "title": "Multi-Character 4D Mesh Interactions from a Single Monocular Video",
+  "supervisor": {
+    "name": "Robin Borth",
+    "href": "https://www.niessnerlab.org/members/robin_borth/profile.html"
+  },
+  "email": "robin.borth@tum.de",
+  "teaser": "Current mesh animation pipelines focus on single characters, leaving a gap in generating realistic multi-character interactions with consistent per-character topology. This project introduces a 4D framework that predicts per-character vertex-level deformation fields guided by geometric and motion priors (DepthAnythingV3, optical flow, TrellisV2), while enforcing collision-penalty losses and intersection tests for physically plausible close-contact dynamics.",
+  "abstract": "Current mesh animation pipelines primarily focus on single-character motions, leaving a significant gap in generating realistic multi-character interactions that maintain consistent per-character topology. This project introduces a 4D animation framework for multi-character interactions that maintains temporally consistent, per-character topologies. It achieves this by predicting individual, vertex-level deformation fields optimized with geometric and motion priors (DepthAnythingV3, optical flow, TrellisV2). To ensure physically plausible close-contact dynamics and prevent unnatural mesh inter-penetration, the pipeline explicitly enforces spatial constraints using collision-penalty losses and continuous intersection tests.",
+  "milestones": [
+    "Curate a foundational 3D animation dataset by extracting and processing single-character assets from the Objaverse-XL dataset.",
+    "Formulate and optimize a per-character deformation field for single-entity animations, driven by depth, optical flow, and shape priors.",
+    "Extend the pipeline to support multi-character interactions, integrating robust physical constraints (e.g., mesh intersection and collision tests) to ensure realistic dynamics."
+  ],
+  "prerequisites": [
+    { "label": "Introduction to Deep Learning (I2DL)", "href": "https://niessner.github.io/I2DL/" },
+    { "label": "Advanced Deep Learning for Computer Vision: Visual Computing (ADL4CV)", "href": "https://niessner.github.io/ADL4CV/" },
+    { "label": "3D Scanning & Motion Capture (3DSMC)", "href": "https://niessner.github.io/3DScanning/" }
+  ],
+  "references": [
+    { "label": "Motion3-to-4: 3D Motion Reconstruction for 4D Synthesis", "href": "https://motion3-to-4.github.io/" },
+    { "label": "TRELLIS.2: Native and Compact Structured Latents for 3D Generation", "href": "https://microsoft.github.io/TRELLIS.2/" },
+    { "label": "Mesh4D: 4D Mesh Reconstruction and Tracking from Monocular Video", "href": "https://mesh-4d.github.io/" },
+    { "label": "V2M4: 4D Mesh Animation Reconstruction from a Single Monocular Video", "href": "https://windvchen.github.io/V2M4/" }
+  ],
+  "tags": ["4D Animation", "Mesh Deformation", "Multi-Character Interaction"],
+  "type": ["IDP", "Guided Research", "Master Thesis"],
+  "state": "open"
+}

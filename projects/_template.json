@@ -1,0 +1,20 @@
+{
+  "title": "Guided Research or Master Thesis",
+  "supervisor": {
+    "name": "Open",
+    "href": "https://niessnerlab.org/team.html"
+  },
+  "email": "firstname.lastname@tum.de",
+  "teaser": "Short teaser text (1-2 sentences) shown on the landing card.",
+  "abstract": "Longer project description. Motivation, context, and what the student will actually build or investigate.",
+  "milestones": ["Milestone 1", "Milestone 2"],
+  "prerequisites": [
+    { "label": "I2DL", "href": "https://www.niessnerlab.org/teaching.html" }
+  ],
+  "references": [
+    { "label": "Reference 1", "href": "https://example.com" }
+  ],
+  "tags": ["Fill in tags"],
+  "type": ["Master Thesis", "Guided Research"],
+  "state": "open"
+}
