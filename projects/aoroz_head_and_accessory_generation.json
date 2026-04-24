@@ -1,0 +1,46 @@
+{
+  "title": "Accessory-Aware 3D Head Reconstruction from a Single Image",
+  "supervisor": {
+    "name": "Antonio Oroz",
+    "href": "https://niessnerlab.org/members/antonio_oroz/profile.html"
+  },
+  "email": "antonio.oroz@tum.de",
+  "teaser": "Develop a modular single-image 3D head reconstruction pipeline that separates the underlying head from accessories such as glasses, earrings, and hats, then reconstructs and aligns the accessories in 3D.",
+  "abstract": "Single-image 3D head reconstruction methods can produce high-quality avatars, but accessories such as glasses, earrings, hats, and necklaces remain difficult to handle. This project investigates an accessory-aware reconstruction pipeline with two stages. First, a base reconstruction model is trained to recover a 3D human head without accessories from an input images with accessories. Training data can be constructed from datasets such as Nersemble, AVA-256, CAFCA, or VFHQ by synthetically adding accessories to the input image using a frozen image editing model such as FLUX.2 4B. Second, accessories are reconstructed separately using a frozen 3D accessory reconstruction model such as SAM-3D. The resulting accessory geometry and approximate layout are combined with the reconstructed base head using a trainable refinement network, which learns to align and integrate the accessories into a coherent final 3D avatar. The student will build the data generation pipeline, train the base head model, design the refinement network, and evaluate reconstruction quality, accessory alignment, and robustness across different accessory types.",
+  "milestones": [
+    "Set up synthetic training data generation by adding accessories to accessory-free head images starting with Nersemble.",
+    "Train a base single-image head reconstruction model that removes accessories and reconstructs the underlying human head.",
+    "Integrate SAM-3D-based accessory reconstruction to obtain per-accessory 3D geometry and approximate layout.",
+    "Design and train a refinement network that combines the base head with reconstructed accessories.",
+    "Evaluate the final avatar reconstruction quality, accessory placement accuracy, and robustness across glasses, earrings, hats, and necklaces."
+  ],
+  "prerequisites": [
+    { "label": "Introduction to Deep Learning (I2DL)", "href": "https://niessner.github.io/I2DL/" },
+    { "label": "Advanced Deep Learning for Computer Vision: Visual Computing (ADL4CV)", "href": "https://niessner.github.io/ADL4CV/" },
+    { "label": "3D Scanning & Motion Capture (3DSMC)", "href": "https://niessner.github.io/3DScanning/" }
+  ],
+  "references": [
+    {
+      "label": "Nersemble",
+      "href": "https://arxiv.org/pdf/2305.03027"
+    },
+    {
+      "label": "FlexAvatar: Learning Complete 3D Head Avatars with Partial Supervision",
+      "href": "https://tobias-kirschstein.github.io/flexavatar/static/FlexAvatar_paper.pdf"
+    },
+    {
+      "label": "PercHead: Perceptual Head Model for Single-Image 3D Head Reconstruction & Editing",
+      "href": "https://arxiv.org/pdf/2511.02777"
+    },
+    {
+      "label": "SAM 3D: 3Dfy Anything in Images",
+      "href": "https://arxiv.org/pdf/2511.16624"
+    }
+  ],
+  "tags": [
+    "Single-Image 3D Reconstruction",
+    "Human Head Avatars"
+  ],
+  "type": ["Master Thesis", "Guided Research", "IDP"],
+  "state": "open"
+}
