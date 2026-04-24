@@ -1,0 +1,29 @@
+{
+  "title": "From Gaussian Splats to Clean Meshes via Generative Mesh Priors",
+  "supervisor": {
+    "name": "Matthias Niessner",
+    "href": "https://niessnerlab.org/members/matthias_niessner/profile.html"
+  },
+  "email": "niessner@tum.de",
+  "teaser": "Convert 3DGS/2DGS reconstructions into clean, artist-style triangle meshes by conditioning generative mesh priors (MeshGPT, TRELLIS / TRELLIS.2) on the Gaussian input and enforcing multi-view rendering and surface-consistency losses between the generated mesh and the splats.",
+  "abstract": "3D Gaussian Splatting (3DGS) reconstructs scenes with stunning visual fidelity, but the underlying geometry is a cloud of anisotropic primitives rather than a usable surface. Classical meshing pipelines (Poisson, TSDF, marching cubes on distilled SDFs) turn these splats into dense, over-tessellated, often noisy meshes that lose the sharp edges and compactness of artist-crafted geometry. This project explores a different path: condition modern generative mesh priors — such as MeshGPT-style autoregressive transformers or TRELLIS / TRELLIS.2 structured-latent generators — directly on a Gaussian reconstruction (ideally a 2DGS variant for better surface alignment) and let the prior produce a clean triangle mesh that matches the input geometry. Task-specific losses (multi-view rendering consistency, surface/Chamfer alignment against the splats, sign-of-distance constraints) tie the generated mesh back to the splat evidence, so we recover artist-like, sharp-edged meshes that remain faithful to the reconstructed scene.",
+  "milestones": [
+    "Build a strong meshing baseline from 3DGS / 2DGS reconstructions (Poisson, TSDF, SuGaR-style) and quantify where it fails on geometry, edges, and triangle budget.",
+    "Design a conditioning encoder that turns a Gaussian reconstruction (gaussian parameters, multi-view depth/normal renders, or an O-Voxel-style sparse grid) into tokens/latents compatible with a pretrained mesh prior (MeshGPT or TRELLIS / TRELLIS.2).",
+    "Integrate Gaussian-consistency losses: multi-view photometric and depth/normal losses against splat renders, Chamfer / one-sided surface distance against the splat surface, and optional SDF-sign supervision.",
+    "Fine-tune or guidance-steer the mesh prior with this conditioning and evaluate against standard meshing baselines on DTU, Tanks & Temples, and Mip-NeRF 360 — both on geometry (Chamfer, normal consistency, edge sharpness) and on mesh compactness (triangle count, face quality)."
+  ],
+  "prerequisites": [
+    { "label": "Introduction to Deep Learning (I2DL)", "href": "https://niessner.github.io/I2DL/" },
+    { "label": "Advanced Deep Learning for Computer Vision: Visual Computing (ADL4CV)", "href": "https://niessner.github.io/ADL4CV/" },
+    { "label": "3D Scanning & Motion Capture (3DSMC)", "href": "https://niessner.github.io/3DScanning/" }
+  ],
+  "references": [
+    { "label": "MeshGPT: Generating Triangle Meshes with Decoder-Only Transformers", "href": "https://nihalsid.github.io/mesh-gpt/" },
+    { "label": "TRELLIS.2: Native and Compact Structured Latents for 3D Generation", "href": "https://microsoft.github.io/TRELLIS.2/" },
+    { "label": "2D Gaussian Splatting for Geometrically Accurate Radiance Fields (SIGGRAPH'24)", "href": "https://github.com/hbb1/2d-gaussian-splatting" }
+  ],
+  "tags": ["3D Reconstruction", "Gaussian Splatting", "Mesh Generation", "Generative 3D"],
+  "type": ["Master Thesis", "IDP", "Guided Research"],
+  "state": "open"
+}

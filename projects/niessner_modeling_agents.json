@@ -1,0 +1,30 @@
+{
+  "title": "Agentic 3D Scene Generation",
+  "supervisor": {
+    "name": "Matthias Niessner",
+    "href": "https://niessnerlab.org/members/matthias_niessner/profile.html"
+  },
+  "email": "niessner@tum.de",
+  "teaser": "An agent-driven pipeline for 3D scene generation: a multimodal agent plans scenes from text/image prompts, retrieves assets from ShapeNet/Objaverse, synthesizes missing geometry and textures with models like Flux or Trellis, and iteratively refines placements using VLM feedback.",
+  "abstract": "Creating high-quality 3D scenes is still a largely manual process that requires expert artists and considerable time. This project explores agentic 3D scene generation, where a large multimodal agent plans a scene, retrieves or synthesizes the necessary 3D assets, places them in a coherent layout, and iteratively refines the result using feedback from a vision-language model. Concretely, the agent will decompose a user prompt (text and/or image) into objects and spatial relations, query large shape databases such as ShapeNet or Objaverse for matching geometry, and leverage modern generative models (e.g., Flux, Trellis) to fill in missing assets or lift them to higher surface and texture fidelity. The core research questions are how to design an effective feedback loop between the planning agent and a VLM critic, how to ground object retrieval in learned shape features, and how far this approach can scale towards fully automated, editable, and physically plausible 3D environments.",
+  "milestones": [
+    "Set up an agentic baseline that places retrieved 3D objects in a scene and evaluates the layout with a modern VLM.",
+    "Predict shape features to retrieve 3D objects from large shape databases such as ShapeNet or Objaverse.",
+    "Incorporate advanced generative models to obtain higher-fidelity surface geometry and textures; this might include Flux or Trellis as a foundation model.",
+    "Condition the generation on user prompts (text and/or reference images from real photos) and close the loop via iterative VLM-critic refinement."
+  ],
+  "prerequisites": [
+    { "label": "Introduction to Deep Learning (I2DL)", "href": "https://niessner.github.io/I2DL/" },
+    { "label": "Advanced Deep Learning for Computer Vision: Visual Computing (ADL4CV)", "href": "https://niessner.github.io/ADL4CV/" },
+    { "label": "3D Scanning & Motion Capture (3DSMC)", "href": "https://niessner.github.io/3DScanning/" }
+  ],
+  "references": [
+    { "label": "VIGA: Visual Guidance for 3D Scene Generation", "href": "https://fugtemypt123.github.io/VIGA-website/" },
+    { "label": "SceneSmith: Editing 3D Scenes with Language Models", "href": "https://scenesmith.github.io/" },
+    { "label": "SAGE: Scalable 3D Asset Generation (NVIDIA Cosmos)", "href": "https://research.nvidia.com/labs/cosmos-lab/sage/" },
+    { "label": "TRELLIS.2: Native and Compact Structured Latents for 3D Generation", "href": "https://microsoft.github.io/TRELLIS.2/" }
+  ],
+  "tags": ["Agentic AI", "3D Scene Generation", "Generative 3D"],
+  "type": ["Master Thesis", "IDP", "Guided Research"],
+  "state": "open"
+}
