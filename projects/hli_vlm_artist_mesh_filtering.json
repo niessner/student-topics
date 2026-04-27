@@ -1,0 +1,24 @@
+{
+  "title": "VLM-based Data Filtering for Artist Mesh Creation",
+  "supervisor": {
+    "name": "Haoxuan Li",
+    "href": "https://niessnerlab.org/members/haoxuan_li/profile.html"
+  },
+  "email": "haoxuan.li@tum.de",
+  "teaser": "Use modern VLMs to label and filter mesh datasets, building a clean, well-defined corpus that improves training of artist-mesh generation models.",
+  "abstract": "With the advance of VLMs, they play an increasingly important role in data filtering, processing, and labeling. One key challenge of training models that produce artist-quality mesh topology is the lack of high-quality, unpolluted datasets. This project explores how to use VLMs to define labeling classes for mesh data, prompt or fine-tune VLMs to apply those labels at scale, and then re-train or fine-tune existing mesh generation methods on the filtered dataset to measure whether VLM-curated data leads to measurable improvements in mesh quality. The expected outcome is a small, clean dataset and a reproducible filtering pipeline.",
+  "milestones": [
+    "Define critical labeling classes for mesh data (topology quality, manifoldness, semantic category, defects).",
+    "Prompt or fine-tune VLMs to label the dataset and validate label agreement against a small human-labeled subset.",
+    "Fine-tune an existing mesh creation method (e.g., TreeMeshGPT) on the filtered dataset and benchmark against the un-filtered baseline."
+  ],
+  "prerequisites": [
+    { "label": "Introduction to Deep Learning (I2DL)", "href": "https://niessner.github.io/I2DL/" }
+  ],
+  "references": [
+    { "label": "TreeMeshGPT — autoregressive artist mesh creation", "href": "https://github.com/sail-sg/TreeMeshGPT" }
+  ],
+  "tags": ["VLM", "Data Filtering", "Mesh Generation"],
+  "type": ["Master Thesis", "Guided Research", "IDP"],
+  "state": "open"
+}
