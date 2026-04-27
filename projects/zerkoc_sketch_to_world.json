@@ -1,0 +1,49 @@
+{
+  "title": "Generating 3D Worlds from Sketch",
+  "supervisor": {
+    "name": "Ziya Erkoç",
+    "href": "https://ziyaerkoc.com"
+  },
+  "email": "ziya.erkoc@tum.de",
+  "teaser": "Build an agentic approach that translates rough human sketches and text prompts into expansive, agent-driven 3D environments.",
+  "abstract": "Current 3D world generation models create impressive large-scale scenes but lack precise, intuitive human control. This project bridges that gap by introducing a 'pair-programming' approach to 3D modeling. You will develop a pipeline where a Vision-Language Model (VLM) acts as an art director, interpreting sparse user sketches alongside text prompts. The system will break down these inputs into actionable geometric steps—routing them through 'addition' or 'deletion' pathways to iteratively sculpt the scene. The core challenge is maintaining global stylistic and spatial consistency while allowing localized, stroke-based edits.",
+  "milestones": [
+    "Develop a VLM-based interpreter to map 2D user sketches to discrete 3D geometric actions (add/delete/modify).",
+    "Integrate these localized editing actions into a global, agent-driven 3D generation pipeline.",
+    "Setup image-based diffusion model as the scene generator backbone.",
+    "Evaluate the system's spatial consistency and user control through multiple rounds of verification and generation."
+  ],
+  "prerequisites": [
+    { "label": "Introduction to Deep Learning (I2DL)", "href": "https://niessner.github.io/I2DL/" },
+    { "label": "Advanced Deep Learning for Computer Vision: Visual Computing (ADL4CV)", "href": "https://niessner.github.io/ADL4CV/" },
+    { "label": "3D Scanning & Motion Capture (3DSMC)", "href": "https://niessner.github.io/3DScanning/" }
+  ],
+  "references": [
+    {
+      "label": "WorldAgents: Can Foundation Image Models be Agents for 3D World Models?",
+      "href": "https://arxiv.org/abs/2603.19708"
+    },
+    {
+      "label": "MeshPad: Interactive Sketch-Conditioned Artist-Reminiscent Mesh Generation and Editing",
+      "href": "https://arxiv.org/abs/2503.01425"
+    },
+    {
+        "label": "Native and Compact Structured Latents for 3D Generation (TRELLIS.2)",
+        "href": "https://arxiv.org/abs/2512.14692"
+    },
+    {
+        "label": "Vision-as-Inverse-Graphics Agent via Interleaved Multimodal Reasoning",
+        "href": "https://arxiv.org/abs/2601.11109"
+    }
+  ],
+  "tags": [
+    "3D Scene Generation",
+    "World Models",
+    "Agentic AI"
+  ],
+  "type": [
+    "Master Thesis",
+    "Guided Research"
+  ],
+  "state": "open"
+}
