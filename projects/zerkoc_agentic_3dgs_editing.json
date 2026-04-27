@@ -1,0 +1,57 @@
+{
+  "title": "Agentic Editing of 3DGS Worlds",
+  "supervisor": {
+    "name": "Ziya Erkoç",
+    "href": "https://ziyaerkoc.com"
+  },
+  "email": "ziya.erkoc@tum.de",
+  "teaser": "Develop a multi-agent framework utilizing Vision-Language and Foundation Image Models to enable text-guided object editing within 3D Gaussian Splatting environments.",
+  "abstract": "While generating 3D environments from scratch has seen massive leaps, the ability to controllably edit a 3D Gaussian Splatting (3DGS) scene post-generation remains an open challenge. This project aims to build an agentic editing pipeline featuring a Vision-Language Model (VLM) and Image Diffusion Models. By leveraging the strong generative priors of modern image models, we want to develop a system that intercepts a text prompt, intelligently identifies which 2D frames observe the target object, edits those frames consistently, and fully-agentic loop evaluates correctness of the new frames. Additionally, for some tasks such as object removal and translation, the agents can directly adjust parameters of the underlying 3DGS representation.",
+  "milestones": [
+    "Set up a 3DGS pipeline (e.g., Nerfstudio, AnySplat) and review foundational literature on 3D editing.",
+    "Implement the VLM (can be supported by SAM model) to extract precise 2D segmentation masks from text prompts across multiple views.",
+    "Integrate a Foundation Image Model (e.g., a diffusion model like Flux or NanoBanana) to edit the masked regions.",
+    "Develop verification logic to project the image model's edits back into 3D space to find and fix any inconsistencies."
+  ],
+  "prerequisites": [
+    { "label": "Introduction to Deep Learning (I2DL)", "href": "https://niessner.github.io/I2DL/" },
+    { "label": "Advanced Deep Learning for Computer Vision: Visual Computing (ADL4CV)", "href": "https://niessner.github.io/ADL4CV/" },
+    { "label": "3D Scanning & Motion Capture (3DSMC)", "href": "https://niessner.github.io/3DScanning/" }
+  ],
+  "references": [
+    {
+      "label": "WorldAgents: Can Foundation Image Models be Agents for 3D World Models?",
+      "href": "https://arxiv.org/abs/2603.19708"
+    },
+    {
+      "label": "AnySplat: Feed-forward 3D Gaussian Splatting from Unconstrained Views",
+      "href": "https://arxiv.org/abs/2505.23716"
+    },
+    {
+      "label": "GaussianEditor: Swift and Controllable 3D Editing with Gaussian Splatting",
+      "href": "https://arxiv.org/abs/2311.14521"
+    },
+    {
+      "label": "Flux.2",
+      "href": "https://huggingface.co/black-forest-labs/FLUX.2-dev"
+    },
+    {
+      "label": "3DSceneEditor: Controllable 3D Scene Editing with Gaussian Splatting",
+      "href": "https://arxiv.org/abs/2412.01583"
+    },
+    {
+      "label": "DGE: Direct Gaussian 3D Editing by Consistent Multi-view Editing",
+      "href": "https://arxiv.org/abs/2404.18929"
+    }
+  ],
+  "tags": [
+    "3D Editing",
+    "Gaussian Splatting",
+    "Agentic AI"
+  ],
+  "type": [
+    "Master Thesis",
+    "Guided Research"
+  ],
+  "state": "open"
+}
