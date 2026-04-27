@@ -1,0 +1,30 @@
+{
+  "title": "LinPrim x EVER: Fast and Exact Rendering of Linear-Primitive Radiance Fields",
+  "supervisor": {
+    "name": "Nicolas von Lützow",
+    "href": "https://nicolasvonluetzow.github.io/"
+  },
+  "email": "nicolas.von-luetzow@tum.de",
+  "teaser": "Combine the linear-primitive radiance-field representation from LinPrim with the exact ray-tracing-based renderer from EVER to get a radiance field that is both compact and renders exactly — no alpha-compositing approximation, no popping, fast on modern GPUs.",
+  "abstract": "Modern radiance-field representations trade off between speed and rendering fidelity. 3D Gaussian Splatting and its descendants are fast but rely on approximate alpha-compositing along sorted primitive lists, which causes popping artifacts, view-dependent inconsistencies, and breaks down for effects like reflections or participating media. Exact volumetric ray tracers like EVER (Exact Volumetric Ellipsoid Rendering) instead integrate the volume rendering equation analytically along each ray, producing artifact-free renderings at interactive rates — but their primitive of choice (constant-density ellipsoids) is still a smooth-blob representation. LinPrim, on the other hand, represents radiance fields with linear primitives (octahedra and tetrahedra — homogeneous volumes bounded by triangular faces) that are more compact and align better with real surfaces, but uses a splatting-style differentiable rasterizer with the usual approximations. The goal of this project is to bring the two together: adapt EVER's exact ray-tracing formulation to LinPrim's linear primitives, and end up with a radiance field representation that is compact, surface-aligned, and renders exactly and fast.",
+  "milestones": [
+    "Reproduce the LinPrim and EVER baselines on a shared dataset (e.g. Mip-NeRF 360) and benchmark their rendering quality, speed, and primitive count.",
+    "Work out the ray entry/exit and volumetric integration for LinPrim's linear primitives — homogeneous density makes this notably simpler than for ellipsoids — and implement it in an EVER-style exact tracer.",
+    "Integrate the new renderer into LinPrim's optimization pipeline (forward + backward) and verify gradients match a finite-difference reference on toy scenes.",
+    "Evaluate against LinPrim and EVER on standard novel-view-synthesis benchmarks — PSNR/SSIM/LPIPS, render speed, primitive count — and ablate the impact of exact vs. approximate compositing.",
+    "Stretch goal: build an accelerated rasterizer-based variant of the exact integrator that leverages the polyhedral structure to avoid ray-space approximations entirely."
+  ],
+  "prerequisites": [
+    { "label": "Introduction to Deep Learning (I2DL)", "href": "https://niessner.github.io/I2DL/" },
+    { "label": "Advanced Deep Learning for Computer Vision (ADL4CV)", "href": "https://niessner.github.io/ADL4CV/" },
+    { "label": "3D Scanning & Motion Capture (3DSMC)", "href": "https://niessner.github.io/3DScanning/" }
+  ],
+  "references": [
+    { "label": "LinPrim: Linear Primitives for Differentiable Volumetric Rendering", "href": "https://nicolasvonluetzow.github.io/LinPrim/" },
+    { "label": "EVER: Exact Volumetric Ellipsoid Rendering for Real-time View Synthesis", "href": "https://half-potato.gitlab.io/ever/" },
+    { "label": "3D Gaussian Splatting for Real-Time Radiance Field Rendering", "href": "https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/" }
+  ],
+  "tags": ["Radiance Fields", "Novel View Synthesis", "Differentiable Rendering", "3D Reconstruction"],
+  "type": ["Guided Research", "IDP"],
+  "state": "open"
+}
