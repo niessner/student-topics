@@ -1,0 +1,32 @@
+{
+  "title": "Matryoshka: Recursive and Coherent Generation of Plausible City-Scale 3D Environments",
+  "supervisor": {
+    "name": "Open",
+    "href": "https://niessnerlab.org/team.html"
+  },
+  "email": "simon.gibenehain@tum.de",
+  "teaser": "Generate plausible city-scale 3D environments through a recursive pipeline that decomposes the world from city layout down to individual room interiors. The focus is structural plausibility, not photorealism.",
+  "abstract": "Most prior work on 3D environment generation targets either outdoor scenes (city blocks, facades) or indoor scenes (rooms, furniture), but rarely both within a coherent pipeline and mainly focus on image quality. This project aims to bridge that gap with a hierarchical, recursive generator. A coarse layout for a city chunk is produced first, either via image-space or scene-layout diffusion in the spirit of [DiffuScene] and [CityDreamer], or autoregressively in the spirit of [ATISS], using OpenStreetMap chunks as training data. The generated layout is then expanded into three specialized branches that refine houses, streets, and nature respectively. House structure — number of floors, placement of doors, windows, and staircases — is generated coarsely by an LLM and translated into a mesh, in the spirit of [AnyHome]. Rooms inside houses are populated by another LLM-driven module that places objects retrieved from a large 3D asset database, similar to [Holodeck]. Each recursion step should be provide context from previous steps, e.g. doors open to the street, a balkony is facing the calmer side, bathrooms within one building are stacked on top of each other, etc. An LLM/VLM critique loop refines outputs at each stage, mirroring the iterative refinement strategies used in [SceneCraft] and [UrbanWorld]. The student will explore representation choices at each scale, design the interfaces between scales, and build a critique loop that catches structural failures (overlapping buildings, doors leading to walls, unreachable rooms) early. The exact focus of the project can change, based on preferences and opportunity costs..",
+  "milestones": [
+    "Prototype the city-layout module on OpenStreetMap chunks (diffusion or autoregressive); iterate until generated layouts are visually plausible.",
+    "Build the LLM-to-mesh pipeline for houses (floors, doors, windows, staircases) and an LLM-driven room layout module with object retrieval; rendering should be done with blender; iterate with a VLM critique loop on a handful of building and room types.",
+    "Define and run a thorough evaluation — structural validity checks, FID on rasterized layouts, and e.g. qualitative comparisons against [UrbanWorld], [Holodeck], and [CityCraft] baselines.",
+    "Scale to full city chunks including the street and nature branches and re-evaluate the full pipeline end-to-end."
+  ],
+  "prerequisites": [
+    { "label": "I2DL", "href": "https://www.niessnerlab.org/teaching.html" }
+  ],
+  "references": [
+    { "label": "DiffuScene", "href": "https://arxiv.org/abs/2303.14207" },
+    { "label": "ATISS", "href": "https://arxiv.org/abs/2110.03675" },
+    { "label": "CityDreamer", "href": "https://arxiv.org/abs/2309.00610" },
+    { "label": "UrbanWorld", "href": "https://arxiv.org/abs/2407.11965" },
+    { "label": "CityCraft", "href": "https://arxiv.org/abs/2406.04983" },
+    { "label": "AnyHome", "href": "https://arxiv.org/abs/2312.06644" },
+    { "label": "Holodeck", "href": "https://yueyang1996.github.io/holodeck/" },
+    { "label": "SceneCraft", "href": "https://arxiv.org/abs/2403.01807" }
+  ],
+  "tags": ["3D Scene Generation", "Generative 3D", "Mesh Generation", "VLM", "Agentic AI"],
+  "type": ["Master Thesis", "Guided Research", "IDP"],
+  "state": "open"
+}
