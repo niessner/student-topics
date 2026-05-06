@@ -6,7 +6,7 @@
   },
   "email": "antonio.oroz@tum.de",
   "teaser": "Develop a multi-view scene reconstruction pipeline combining feed-forward reconstruction from DA3 for structural elements (floor, walls, ceiling) with per-object reconstruction via SAM3D/MV-SAM3D.",
-  "abstract": "Multi-view 3D scene reconstruction is challenging because occluded regions often cause artifacts and broken geometry. We decouple these into two specialized sub-tasks: structural reconstruction and per-object reconstruction. For structure, we remove objects from the input images using an image diffusion model (e.g. FLUX.2) and run Depth Anything 3 on the cleaned images to recover walls, floors, and ceilings. For objects, we reconstruct each instance with SAM-3D (alternatively: MV-SAM-3D, RecGen) together with their initial pose. We then train a seperate module to combine the structural reconstruction with the per-object reconstructions.",
+  "abstract": "Multi-view 3D scene reconstruction is challenging because occluded regions often cause artifacts and broken geometry, requiring inference of both structural surfaces and complete object geometry behind occluders. We decouple these two problems into specialized sub-tasks: structural reconstruction and per-object reconstruction. For structure, we remove objects from the input images using an image diffusion model (e.g. FLUX.2) and run Depth Anything 3 on the cleaned images to recover walls, floors, and ceilings. For objects, we reconstruct each instance with SAM-3D (alternatively: MV-SAM-3D, RecGen) together with their initial pose. We then train a seperate module to combine the structural reconstruction with the per-object reconstructions.",
   "milestones": [
     "Remove objects from the input images using FLUX.2 and set up a multi-view Depth Anything 3 pipeline for initial structural scene geometry.",
     "Use SAM-3D (alternatively: MV-SAM-3D, RecGen) to reconstruct each object instance separately.",
@@ -38,18 +38,18 @@
     },
     {
       "label": "MV-SAM3D",
-      "href": "https://arxiv.org/pdf/2601.17866"
+      "href": "https://arxiv.org/pdf/2603.11633"
     },
     {
-      "label": "RecGen (possible alternative to SAM-3D)",
+      "label": "RecGen",
       "href": "https://arxiv.org/pdf/2604.27106"
     },
     {
-      "label": "CAST (related work)",
+      "label": "CAST",
       "href": "https://arxiv.org/pdf/2502.12894"
     },
     {
-      "label": "SceneGen (related work)",
+      "label": "SceneGen",
       "href": "https://arxiv.org/pdf/2508.15769"
     }
   ],
