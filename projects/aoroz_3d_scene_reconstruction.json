@@ -5,14 +5,13 @@
     "href": "https://niessnerlab.org/members/antonio_oroz/profile.html"
   },
   "email": "antonio.oroz@tum.de",
-  "teaser": "Develop a modular multi-image 3D scene reconstruction pipeline that combines Depth Anything 3 point-cloud initialization with SAM-3D-based object reconstruction, object alignment, and generated structural scene geometry.",
-  "abstract": "Multi-view 3D scene reconstruction from casual image collections remains challenging when scenes contain cluttered objects, occlusions, and incomplete viewpoints. This project investigates an object- and structure-aware reconstruction pipeline built around recent foundation models for geometry estimation and object-level 3D reconstruction. Given multiple posed or unposed input images of a scene, the pipeline first applies Depth Anything 3 to estimate spatially consistent depth and generate an initial global point cloud. Object instances are then detected, segmented, and reconstructed separately using SAM-3D, producing object-level geometry, texture, and approximate layout. Since SAM-3D reconstructions are generated independently, we need to estimate consistent object scale, pose, and alignment across views and integrate the reconstructed objects into the global scene. In parallel, missing structural geometry such as walls, floors, ceilings, and large planar surfaces need to be inferred from the point cloud and generated or refined into a coherent scene. The final system combines depth-based scene geometry, SAM-3D object assets, and generated structural components into a complete 3D scene representation.",
+  "teaser": "Develop a multi-view scene reconstruction pipeline combining feed-forward reconstruction from DA3 for structural elements (floor, walls, ceiling) with per-object reconstruction via SAM3D/MV-SAM3D.",
+  "abstract": "Multi-view 3D scene reconstruction is challenging because occluded regions often cause artifacts and broken geometry. We decouple these into two specialized sub-tasks: structural reconstruction and per-object reconstruction. For structure, we remove objects from the input images using an image diffusion model (e.g. FLUX.2) and run Depth Anything 3 on the cleaned images to recover walls, floors, and ceilings. For objects, we reconstruct each instance with SAM-3D (alternatively: MV-SAM-3D, RecGen) together with their initial pose. We then train a seperate module to combine the structural reconstruction with the per-object reconstructions.",
   "milestones": [
-    "Set up a multi-image scene reconstruction pipeline using Depth Anything 3 to estimate depth maps, camera geometry, and an initial fused point cloud.",
-    "Integrate object detection and segmentation to extract object instances from the input images and prepare per-object crops or masks for SAM-3D reconstruction.",
-    "Use SAM-3D to reconstruct object-level 3D geometry, texture, and approximate layout for visible objects in the scene.",
-    "Design and implement an object alignment module that refines SAM-3D's estimated scale and pose for consistency with DA3's point cloud.",
-    "Develop a structural geometry generation module for walls, floors, ceilings, large planar surfaces, and missing background geometry."
+    "Remove objects from the input images using FLUX.2 and set up a multi-view Depth Anything 3 pipeline for initial structural scene geometry.",
+    "Use SAM-3D (alternatively: MV-SAM-3D, RecGen) to reconstruct each object instance separately.",
+    "Train a separate combination module that refines the initial SAM-3D object poses to match the structural geometry.",
+    "Alternative: try using an agent to iteratively refine the placement of the objects within the structural reconstruction."
   ],
   "prerequisites": [
     {
@@ -36,15 +35,29 @@
     {
       "label": "Depth Anything 3: Recovering the Visual Space from Any Views",
       "href": "https://arxiv.org/pdf/2511.10647"
+    },
+    {
+      "label": "MV-SAM3D",
+      "href": "https://arxiv.org/pdf/2601.17866"
+    },
+    {
+      "label": "RecGen (possible alternative to SAM-3D)",
+      "href": "https://arxiv.org/pdf/2604.27106"
+    },
+    {
+      "label": "CAST (related work)",
+      "href": "https://arxiv.org/pdf/2502.12894"
+    },
+    {
+      "label": "SceneGen (related work)",
+      "href": "https://arxiv.org/pdf/2508.15769"
     }
   ],
   "tags": [
     "Multi-View 3D Reconstruction",
     "3D Scene Reconstruction",
     "SAM-3D",
-    "Depth Estimation",
-    "Object-Level Reconstruction",
-    "Structural Scene Completion"
+    "Object-Level Reconstruction"
   ],
   "type": [
     "Master Thesis",
