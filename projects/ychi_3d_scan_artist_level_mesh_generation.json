@@ -2,7 +2,7 @@
   "title": "Artist-Level Mesh Generation from 3D Scans",
   "supervisor": {
     "name": "Yu Chi",
-    "href": "https://niessnerlab.org/team.html"
+    "href": "https://ychgoaround.github.io/"
   },
   "email": "yu.chi@tum.de",
   "teaser": "Develop a method to generate object-level artist-level meshes from 3D scans with a gpt-style auto-regressive transformer decoder and Utonia point cloud encoder.",
