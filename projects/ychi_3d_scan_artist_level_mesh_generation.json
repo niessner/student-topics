@@ -1,17 +1,18 @@
 {
-  "title": "Artist-Level Mesh Generation from 3D Scans",
+  "title": "ScanMesh: Artist-Style Meshes from Real 3D Scans via Self-Supervised Encoders",
   "supervisor": {
     "name": "Yu Chi",
     "href": "https://ychgoaround.github.io/"
   },
   "email": "yu.chi@tum.de",
-  "teaser": "Develop a method to generate object-level artist-level meshes from 3D scans with a gpt-style auto-regressive transformer decoder and Utonia point cloud encoder.",
-  "abstract": "Generating high-quality artist-level meshes from 3D scans is a challenging task in computer vision. Previous methods like MeshAnything have shown promising results in generating meshes from point cloud of synthetic objects, but they struggle to handle the noise and complexity of real-world 3D scans. In this project, we propose to develop a method that can generate high-quality meshes from 3D scans by leveraging the power of gpt-style auto-regressive transformer decoder and strong generalizability of self-supervised point cloud encoder Utonia. The proposed method will be trained on a large dataset of 3D virtual scans and their corresponding artist-level meshes, and will be evaluated on its ability to generate high-quality meshes from unseen 3D real-world scans.",
+  "teaser": "Generate clean, artist-style meshes directly from noisy real-world 3D scans by combining a strong self-supervised point cloud encoder (Utonia) with an autoregressive mesh decoder, trained entirely on simulated scans of synthetic objects.",
+  "abstract": "Autoregressive mesh generators such as MeshAnything produce clean, artist-style meshes from point clouds of synthetic objects, but degrade sharply on real-world 3D scans, which carry sensor noise, occlusion, non-uniform density, and out-of-distribution geometry. We propose to close this synthetic-real gap not by retraining the mesh decoder on real data — which is impractical because paired (real scan, artist mesh) data does not exist at scale — but by replacing the encoder with a strong self-supervised point cloud encoder (Utonia) trained across diverse synthetic and real point clouds. Our hypothesis is that Utonia's representations are sufficiently invariant to the synthetic-real gap that an autoregressive mesh decoder trained only on (virtual scan, artist mesh) pairs of ShapeNet objects will transfer to real scans at inference time. We first measure the synthetic-real gap in the Utonia feature space across synthetic shapes, virtual scans, and real 3D scans. We then train the full pipeline and evaluate on real-scan benchmarks, comparing against MeshAnything baselines on both geometric accuracy and mesh-quality metrics, and analyzing where the synthetic-real transfer succeeds and fails.",
   "milestones": [
-    "Create virtual scans from synthetic ShapeNet objects to build a paired (virtual scan, artist mesh) training set.",
-    "Investigate the Utonia feature space for synthetic shapes, virtual scans, and real 3D scans across same- and cross-category objects.",
-    "Train a gpt-style auto-regressive transformer decoder on the (virtual scan, mesh) pairs, conditioned on Utonia features.",
-    "Evaluate on real-world 3D scans and compare against MeshAnything baselines on geometry and mesh-quality metrics."
+    "Literature review (autoregressive mesh generation, self-supervised point cloud encoders, synthetic-to-real transfer for 3D shape tasks); build a virtual-scan pipeline with a realistic noise model (Kinect/RealSense-style simulation with multi-view fusion); generate paired (virtual scan, artist mesh) data from ShapeNet across selected categories.",
+    "Probe the Utonia feature space across synthetic shapes, virtual scans, and real 3D scans for same- and cross-category objects; quantify the synthetic-real gap via retrieval, clustering, and distance-distribution analysis; decide whether to use the encoder frozen or with light fine-tuning.",
+    "Train a GPT-style autoregressive mesh decoder on (virtual scan, artist mesh) pairs, conditioned on Utonia features; ablate encoder configuration (frozen vs. fine-tuned, intermediate vs. final features) and conditioning interface.",
+    "Evaluate on real-scan benchmarks (e.g., Scan2CAD-aligned ScanNet objects, or a curated subset) against MeshAnything-class baselines using both geometric metrics (Chamfer, F-score) and mesh-quality metrics (triangle count, manifoldness, visual quality); analyze failure modes by category, scan quality, and object complexity.",
+    "(Stretch) Investigate test-time strategies for handling out-of-distribution real scans — novel categories, severe occlusion, scale mismatches — and report whether the encoder-invariance hypothesis holds in the open-set regime."
   ],
   "prerequisites": [
     { "label": "Introduction to Deep Learning (I2DL)", "href": "https://niessner.github.io/I2DL/" },
@@ -19,11 +20,13 @@
     { "label": "3D Scanning & Motion Capture (3DSMC)", "href": "https://niessner.github.io/3DScanning/" }
   ],
   "references": [
-    { "label": "Utonia:Toward One Encoder for All Point Clouds", "href": "https://pointcept.github.io/Utonia/" },
+    { "label": "Utonia: Toward One Encoder for All Point Clouds", "href": "https://pointcept.github.io/Utonia/" },
     { "label": "MeshAnything V2: Artist-Created Mesh Generation with Adjacent Mesh Tokenization", "href": "https://buaacyw.github.io/meshanything-v2/" },
+    { "label": "MeshGPT: Generating Triangle Meshes with Decoder-Only Transformers", "href": "https://nihalsid.github.io/mesh-gpt/" },
+    { "label": "PolyGen: An Autoregressive Generative Model of 3D Meshes", "href": "https://arxiv.org/abs/2002.10880" },
     { "label": "PatchComplete: Learning Multi-Resolution Patch Priors for 3D Shape Completion on Unseen Categories", "href": "https://yuchenrao.github.io/projects/patchComplete/patchComplete.html" }
   ],
-  "tags": ["Mesh Generation", "Generative 3D", "3D Scanning"],
+  "tags": ["Mesh Generation", "Generative 3D", "3D Scanning", "Synthetic-to-Real Transfer"],
   "type": ["Master Thesis", "Guided Research", "IDP"],
   "state": "open"
 }
