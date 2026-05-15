@@ -2,7 +2,7 @@
   "title": "DepthFLUX: Metric Depth Estimation and Completion from FLUX",
   "supervisor": {
     "name": "Yu Chi",
-    "href": "https://niessnerlab.org/team.html"
+    "href": "https://ychgoaround.github.io/"
   },
   "email": "yu.chi@tum.de",
   "teaser": "A compact, unified model for metric depth estimation and depth completion, fine-tuned from the pretrained FLUX2 image generator.",
