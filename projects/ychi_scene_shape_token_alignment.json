@@ -1,0 +1,30 @@
+{
+  "title": "TokenBridge: Aligning View- and Geometry-Derived Tokens for 3D Scene Understanding",
+  "supervisor": {
+    "name": "Yu Chi",
+    "href": "https://ychgoaround.github.io/"
+  },
+  "email": "yu.chi@tum.de",
+  "teaser": "A CLIP-style alignment between image-derived 3D tokens (from feed-forward reconstruction) and geometry-derived 3D shape tokens, used as a probe for what each modality contributes to a unified 3D scene representation.",
+  "abstract": "Recent feed-forward reconstruction models such as VGGT-Ω produce per-frame register tokens that implicitly encode 3D scene information from RGB views, while shape-token models such as 3DShape2VecSet learn explicit 3D representations directly from point clouds or meshes. These two token families describe the same underlying scenes from fundamentally different starting points: view-derived tokens carry appearance, lighting, and partial geometry conditioned on observed viewpoints, whereas geometry-derived tokens carry complete shape but no appearance. In this project, we train a CLIP-style contrastive alignment between the two token spaces on paired RGB-view and 3D-shape datasets (Objaverse, CO3D, ShapeNet), and use the resulting alignment as a probe to quantify what each modality knows that the other does not. Beyond the diagnostic value, we investigate whether the alignment improves downstream tasks — e.g., whether registers fine-tuned for shape alignment encode more complete geometry, useful for novel-view synthesis or single-view 3D reconstruction.",
+  "milestones": [
+    "Literature review on view-derived (VGGT, VGGT-Ω, DUSt3R) and geometry-derived (3DShape2VecSet, Point-BERT, CLAY) token representations; preparation of paired RGB-view and 3D-shape datasets (Objaverse-LVIS, ShapeNet renders, CO3D).",
+    "Extract VGGT-Ω scene tokens from rendered/captured views and shape tokens from corresponding meshes; build a symmetric attention-readout architecture that maps each set to a shared embedding space.",
+    "Train a symmetric InfoNCE alignment on object-level data; evaluate top-K bidirectional retrieval and ablate over the number of views, register pooling strategies, and shape-token encoders.",
+    "Run modality-complementarity probes (ambiguous-pair retrieval, partial-view robustness, scale generalization) and evaluate whether the alignment-fine-tuned registers improve a downstream geometric task (single-view 3D reconstruction or novel view synthesis) compared to the frozen VGGT-Ω baseline."
+  ],
+  "prerequisites": [
+    { "label": "Introduction to Deep Learning (I2DL)", "href": "https://niessner.github.io/I2DL/" },
+    { "label": "Advanced Deep Learning for Computer Vision: Visual Computing (ADL4CV)", "href": "https://niessner.github.io/ADL4CV/" },
+    { "label": "3D Scanning & Motion Capture (3DSMC)", "href": "https://niessner.github.io/3DScanning/" }
+  ],
+  "references": [
+    { "label": "VGGT-Ω: Feed-Forward Reconstruction at Scale", "href": "https://vggt-omega.github.io/" },
+    { "label": "3DShape2VecSet: A 3D Shape Representation for Neural Fields and Generative Diffusion Models", "href": "https://1zb.github.io/3DShape2VecSet/" },
+    { "label": "Learning Transferable Visual Models From Natural Language Supervision (CLIP)", "href": "https://arxiv.org/abs/2103.00020" },
+    { "label": "The Platonic Representation Hypothesis", "href": "https://arxiv.org/abs/2405.07987" }
+  ],
+  "tags": ["3D Representation Learning", "Cross-Modal Alignment", "3D Reconstruction", "Shape Tokens"],
+  "type": ["Master Thesis", "Guided Research", "IDP"],
+  "state": "open"
+}
