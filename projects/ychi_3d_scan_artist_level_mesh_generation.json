@@ -1,0 +1,29 @@
+{
+  "title": "Artist-Level Mesh Generation from 3D Scans",
+  "supervisor": {
+    "name": "Yu Chi",
+    "href": "https://niessnerlab.org/team.html"
+  },
+  "email": "yu.chi@tum.de",
+  "teaser": "Develop a method to generate object-level artist-level meshes from 3D scans with a gpt-style auto-regressive transformer decoder and Utonia point cloud encoder.",
+  "abstract": "Generating high-quality artist-level meshes from 3D scans is a challenging task in computer vision. Previous methods like MeshAnything have shown promising results in generating meshes from point cloud of synthetic objects, but they struggle to handle the noise and complexity of real-world 3D scans. In this project, we propose to develop a method that can generate high-quality meshes from 3D scans by leveraging the power of gpt-style auto-regressive transformer decoder and strong generalizability of self-supervised point cloud encoder Utonia. The proposed method will be trained on a large dataset of 3D virtual scans and their corresponding artist-level meshes, and will be evaluated on its ability to generate high-quality meshes from unseen 3D real-world scans.",
+  "milestones": [
+    "Create virtual scans from synthetic ShapeNet objects to build a paired (virtual scan, artist mesh) training set.",
+    "Investigate the Utonia feature space for synthetic shapes, virtual scans, and real 3D scans across same- and cross-category objects.",
+    "Train a gpt-style auto-regressive transformer decoder on the (virtual scan, mesh) pairs, conditioned on Utonia features.",
+    "Evaluate on real-world 3D scans and compare against MeshAnything baselines on geometry and mesh-quality metrics."
+  ],
+  "prerequisites": [
+    { "label": "Introduction to Deep Learning (I2DL)", "href": "https://niessner.github.io/I2DL/" },
+    { "label": "Advanced Deep Learning for Computer Vision: Visual Computing (ADL4CV)", "href": "https://niessner.github.io/ADL4CV/" },
+    { "label": "3D Scanning & Motion Capture (3DSMC)", "href": "https://niessner.github.io/3DScanning/" }
+  ],
+  "references": [
+    { "label": "Utonia:Toward One Encoder for All Point Clouds", "href": "https://pointcept.github.io/Utonia/" },
+    { "label": "MeshAnything V2: Artist-Created Mesh Generation with Adjacent Mesh Tokenization", "href": "https://buaacyw.github.io/meshanything-v2/" },
+    { "label": "PatchComplete: Learning Multi-Resolution Patch Priors for 3D Shape Completion on Unseen Categories", "href": "https://yuchenrao.github.io/projects/patchComplete/patchComplete.html" }
+  ],
+  "tags": ["Mesh Generation", "Generative 3D", "3D Scanning"],
+  "type": ["Master Thesis", "Guided Research", "IDP"],
+  "state": "open"
+}
