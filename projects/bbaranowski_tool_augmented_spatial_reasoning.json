@@ -1,0 +1,28 @@
+{
+  "title": "Tool-Augmented Spatial Reasoning for Vision-Language Models",
+  "supervisor": {
+    "name": "Bartlomiej Baranowski",
+    "href": "https://baranowskibrt.github.io/"
+  },
+  "email": "bartlomiej.baranowski@tum.de",
+  "teaser": "A small VLM agent that delegates the metric parts of spatial reasoning (distances, angles, fit, reachability) to a compact toolset, since language models are weak at numerical computation.",
+  "abstract": "VLMs describe scenes well but fail on the metric parts of spatial reasoning: distances, sizes, angles, occlusion, reachability, fit. Language models are also weak at numerical computation, so asking a VLM to estimate a metric quantity from an image stacks two weaknesses on top of each other. This project builds a small open-weight VLM agent that delegates these subproblems to a narrow, well-motivated toolset: a self-spec lookup that returns the agent's own dimensions, a 3D point retrieval tool backed by a frozen monocular depth model, and a Python geometry kit (distance, angle, volume, line of sight, shortest-path on an occupancy grid). The student evaluates the agent against the same VLM without tools on standard spatial reasoning benchmarks and on a small embodied decision benchmark built on indoor 3D scans, with questions of the form 'can the robot fit through this gap', 'is the object reachable from here', 'is the path clear'. The aim is to identify which tool fixes which VLM failure mode. The stretch goal is to distill the tool-augmented behavior back into the VLM by fine-tuning on synthetic agent traces.",
+  "milestones": [
+    "Implement the agent loop around a small open-weight VLM (Qwen3.5-VL) with the toolset above, and reproduce a no-tools baseline on standard spatial QA benchmarks.",
+    "Build a small embodied decision benchmark on indoor 3D scans (fit-through-a-gap, reach-an-object, path-is-clear), and quantify the accuracy gain over the no-tools baseline and over single-tool ablations.",
+    "Characterize failure modes (wrong tool invoked, right tool with misread output, missed tool call) and identify the tools that move the needle most.",
+    "(Optional) Distill the tool-augmented behavior back into the VLM by fine-tuning on synthetic agent traces."
+  ],
+  "prerequisites": [
+    { "label": "Introduction to Deep Learning (I2DL)", "href": "https://niessner.github.io/I2DL/" }
+  ],
+  "references": [
+    { "label": "SpatialRGPT: Grounded Spatial Reasoning in Vision-Language Models", "href": "https://arxiv.org/abs/2406.01584" },
+    { "label": "Depth Anything V2", "href": "https://arxiv.org/abs/2406.09414" },
+    { "label": "Thinking in Space (VSI-Bench)", "href": "https://arxiv.org/abs/2412.14171" },
+    { "label": "ScanNet: Richly-annotated 3D Reconstructions of Indoor Scenes", "href": "https://arxiv.org/abs/1702.04405" }
+  ],
+  "tags": ["VLM", "Agentic AI", "Spatial Reasoning", "Tool Use"],
+  "type": ["Master Thesis", "Guided Research", "IDP"],
+  "state": "open"
+}
