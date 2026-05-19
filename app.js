@@ -8,6 +8,7 @@ const state = {
 async function load() {
   const res = await fetch("projects.json");
   state.projects = await res.json();
+  for (const p of state.projects) if (p.type) p.type.sort();
   renderTypeFilters();
   renderTagFilters();
   wireClearButton("type-clear", state.activeTypes, renderTypeFilters);

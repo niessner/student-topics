@@ -116,6 +116,7 @@ async function load() {
     const res = await fetch(`projects/${slug}.json`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const p = await res.json();
+    if (p.type) p.type.sort();
     p.slug = slug;
     renderProject(p);
   } catch (e) {
