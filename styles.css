@@ -108,6 +108,11 @@ h1 { font-size: 2.1rem; }
   border-color: var(--accent);
   color: white;
 }
+.tag-filter-more {
+  border-style: dashed;
+  color: var(--accent);
+}
+.tag-filter-more:hover { background: var(--accent-soft); }
 
 .project-list {
   display: flex;

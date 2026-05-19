@@ -3,6 +3,7 @@ const state = {
   activeTags: new Set(),
   activeTypes: new Set(),
   query: "",
+  showAllTags: false,
 };
 
 async function load() {
@@ -16,42 +17,70 @@ async function load() {
   render();
 }
 
-function allTags() {
-  const tags = new Set();
-  state.projects.forEach((p) => (p.tags || []).forEach((t) => tags.add(t)));
-  return [...tags].sort();
-}
-
 function allTypes() {
   const types = new Set();
   state.projects.forEach((p) => (p.type || []).forEach((t) => types.add(t)));
   return [...types].sort();
 }
 
-function renderPillFilters(containerId, values, activeSet) {
-  const container = document.getElementById(containerId);
-  container.innerHTML = "";
-  for (const value of values) {
-    const btn = document.createElement("button");
-    btn.className = "tag-filter";
-    btn.textContent = value;
-    if (activeSet.has(value)) btn.classList.add("active");
-    btn.addEventListener("click", () => {
-      if (activeSet.has(value)) activeSet.delete(value);
-      else activeSet.add(value);
-      btn.classList.toggle("active");
-      render();
-    });
-    container.appendChild(btn);
-  }
+function tagFrequencies() {
+  const counts = new Map();
+  state.projects.forEach((p) => (p.tags || []).forEach((t) => counts.set(t, (counts.get(t) || 0) + 1)));
+  return counts;
 }
 
-function renderTagFilters() {
-  renderPillFilters("tag-filters", allTags(), state.activeTags);
+function makePill(value, activeSet) {
+  const btn = document.createElement("button");
+  btn.className = "tag-filter";
+  btn.textContent = value;
+  if (activeSet.has(value)) btn.classList.add("active");
+  btn.addEventListener("click", () => {
+    if (activeSet.has(value)) activeSet.delete(value);
+    else activeSet.add(value);
+    btn.classList.toggle("active");
+    render();
+  });
+  return btn;
 }
 
 function renderTypeFilters() {
-  renderPillFilters("type-filters", allTypes(), state.activeTypes);
+  const container = document.getElementById("type-filters");
+  container.innerHTML = "";
+  for (const value of allTypes()) container.appendChild(makePill(value, state.activeTypes));
+}
+
+const RARE_TAG_THRESHOLD = 2;
+
+function renderTagFilters() {
+  const container = document.getElementById("tag-filters");
+  container.innerHTML = "";
+  const counts = tagFrequencies();
+  const sorted = [...counts.keys()].sort((a, b) => counts.get(b) - counts.get(a) || a.localeCompare(b));
+  const activeSet = state.activeTags;
+  let hiddenCount = 0;
+  for (const tag of sorted) {
+    const isCommon = counts.get(tag) >= RARE_TAG_THRESHOLD;
+    const visible = isCommon || activeSet.has(tag) || state.showAllTags;
+    if (visible) container.appendChild(makePill(tag, activeSet));
+    else hiddenCount++;
+  }
+  const hasUnselectedRare = sorted.some((t) => counts.get(t) < RARE_TAG_THRESHOLD && !activeSet.has(t));
+  if (hiddenCount > 0) {
+    container.appendChild(makeToggleButton(`+${hiddenCount} more`, true));
+  } else if (state.showAllTags && hasUnselectedRare) {
+    container.appendChild(makeToggleButton("Show fewer", false));
+  }
+}
+
+function makeToggleButton(label, expand) {
+  const btn = document.createElement("button");
+  btn.className = "tag-filter tag-filter-more";
+  btn.textContent = label;
+  btn.addEventListener("click", () => {
+    state.showAllTags = expand;
+    renderTagFilters();
+  });
+  return btn;
 }
 
 function wireClearButton(buttonId, activeSet, rerender) {
