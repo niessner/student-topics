@@ -124,7 +124,7 @@ for json_path in sorted(PROJECTS_DIR.glob("*.json")):
         continue
 
     try:
-        meta = json.loads(json_path.read_text())
+        meta = json.loads(json_path.read_text(encoding="utf-8"))
     except json.JSONDecodeError as e:
         report(json_path, f"invalid JSON ({e.msg} at line {e.lineno})")
         error_count += 1
@@ -164,5 +164,5 @@ if error_count:
     )
     sys.exit(1)
 
-(ROOT / "projects.json").write_text(json.dumps(manifest, indent=2) + "\n")
+(ROOT / "projects.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
 print(f"wrote projects.json with {len(manifest)} open project(s)")
