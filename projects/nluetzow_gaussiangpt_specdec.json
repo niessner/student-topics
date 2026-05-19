@@ -1,0 +1,31 @@
+{
+  "title": "Fast, Lossless-Quality Inference for Autoregressive 3D Scene Generation",
+  "supervisor": {
+    "name": "Nicolas von Lützow",
+    "href": "https://nicolasvonluetzow.github.io/"
+  },
+  "email": "nicolas.von-luetzow@tum.de",
+  "teaser": "Bring speculative decoding to autoregressive 3D scene generation: a small GaussianGPT drafts a block of tokens, the full GaussianGPT verifies them in a single parallel pass, and the prefix that survives is accepted — preserving the target model's output distribution while amortizing K sequential decoding steps into one.",
+  "abstract": "Autoregressive 3D scene generators like GaussianGPT produce large 3D scenes but inherit the inference-speed problem of token-by-token decoding: a single scene is thousands of tokens, and a causal transformer must emit them one at a time. The NLP community has spent years on exactly this bottleneck, and speculative decoding has emerged as a standard tool: a smaller draft model proposes K tokens, the target model verifies them all in a single parallel forward pass, and the longest accepted prefix is committed — with the provable guarantee that the resulting output distribution is identical to plain target sampling. This project ports the recipe to GaussianGPT in its canonical form: train a small same-vocabulary draft (a shallower / narrower GaussianGPT, optionally distilled from the full model) and integrate the standard speculative decoding loop with the existing 3D-RoPE causal transformer and its KV-cache. Beyond reproducing the well-known NLP wins, the project investigates what is 3D-specific about the setup: do VQ codes for adjacent 3D regions correlate more strongly than text tokens at comparable distances, so acceptance rates stay high for longer draft prefixes; does the spatial generation order affect where rejections cluster; and how do the speed-quality and memory-quality trade-offs change across scene complexity and primitive count.",
+  "milestones": [
+    "Reproduce the GaussianGPT inference pipeline end-to-end and profile it: which fraction of inference is the autoregressive loop, what the GPU utilization looks like, how the KV-cache grows with sequence length.",
+    "Train a small same-vocabulary draft GaussianGPT — a shallower / narrower variant — either from scratch or distilled from the full model; characterize the quality / latency / acceptance-rate Pareto front across draft sizes.",
+    "Implement the canonical speculative decoding loop: K-token draft prefix, single parallel target verification pass, residual-distribution resampling on rejection, free bonus token at full-prefix acceptance; integrate with the existing KV-cache without recomputation.",
+    "Benchmark end-to-end against vanilla GaussianGPT decoding on standard scene-generation evaluations — wall-clock latency, tokens/sec, KID/FID on rendered views, geometric quality — empirically confirm that quality matches vanilla autoregressive sampling, and ablate draft-prefix length, draft size, and temperature.",
+    "Stretch goal: explore Medusa-style self-speculation (extra prediction heads on the target model, no separate draft) as a memory-cheaper alternative, and study whether spatial KV-cache locality (3D-RoPE) can be exploited for an additional compounding speedup."
+  ],
+  "prerequisites": [
+    { "label": "Introduction to Deep Learning (I2DL)", "href": "https://niessner.github.io/I2DL/" },
+    { "label": "Advanced Deep Learning for Computer Vision (ADL4CV)", "href": "https://niessner.github.io/ADL4CV/" }
+  ],
+  "references": [
+    { "label": "GaussianGPT: Towards Autoregressive 3D Gaussian Scene Generation", "href": "https://arxiv.org/abs/2603.26661" },
+    { "label": "Fast Inference from Transformers via Speculative Decoding", "href": "https://arxiv.org/abs/2211.17192" },
+    { "label": "Accelerating Large Language Model Decoding with Speculative Sampling", "href": "https://arxiv.org/abs/2302.01318" },
+    { "label": "Medusa: Simple LLM Inference Acceleration Framework with Multiple Decoding Heads", "href": "https://arxiv.org/abs/2401.10774" },
+    { "label": "EAGLE: Speculative Sampling Requires Rethinking Feature Uncertainty", "href": "https://arxiv.org/abs/2401.15077" }
+  ],
+  "tags": ["3D Generation", "Autoregressive Models", "Speculative Decoding", "Inference Efficiency"],
+  "type": ["Master Thesis", "Guided Research", "IDP"],
+  "state": "open"
+}
