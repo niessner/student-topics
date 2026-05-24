@@ -1,0 +1,26 @@
+{
+  "title": "Retexturing for Generative Indoor Scene Reconstructions",
+  "supervisor": {
+    "name": "Katharina Schmid",
+    "href": "https://kasothaphie.github.io"
+  },
+  "email": "katharina.s.schmid@tum.de",
+  "teaser": "Generative scene reconstruction methods such as GenRecon can reconstruct complete indoor 3D scenes from sparse RGB observations, but do not allow flexible editing of scene appearance. This project investigates whether reconstructed indoor scenes can be retextured from a text prompt while preserving geometry and maintaining consistency across multiple viewpoints.",
+  "abstract": "Sparse-view 3D scene reconstruction methods such as GenRecon can generate complete indoor scene meshes from only a few RGB images. While these approaches can reconstruct geometry and recover realistic scene appearance, they provide limited control over modifying scene textures after reconstruction. This project explores an iterative text-guided retexturing framework for reconstructed indoor scenes. Starting from sparse input images, a scene is first reconstructed using GenRecon. Input views are then edited using a text-conditioned image generation model to produce novel textures while preserving the underlying scene structure and layout. To ensure consistency across viewpoints, reconstruction and texture editing are performed iteratively. Starting from a single edited image, a 3D scene representation is reconstructed and rendered from novel viewpoints. These rendered views contain regions with already updated textures as well as regions whose appearance has not yet been defined. Texture editing is then selectively applied only to regions with undefined appearance, while preserving previously edited content. The student will implement the iterative reconstruction and editing pipeline, integrate text-guided image generation and inpainting methods, and evaluate the quality, consistency, and controllability of the generated scene textures.",
+  "milestones": [
+    "Understand GenRecon and its projection-based 3D guidance. Set up GenRecon and run inference pipeline.", 
+    "Set up structure-preserving image editing based on text prompt. Investigate quality of edited image with reference to text prompt and input structure.",
+    "Implement iterative multi-view retexturing: Generate texture from edited views. Render novel viewpoint from 3D scene. Detect regions without edited texture based on 3D projection. Implement masked editing of novel viewpoint. Iteratively expand edited content.",
+    "Evaluate texture quality, realism and prompt adherence."],
+  "prerequisites": [
+    { "label": "I2DL", "href": "https://www.niessnerlab.org/teaching.html" },
+    { "label": "Advanced Deep Learning for Computer Vision (ADL4CV)", "href": "https://niessner.github.io/ADL4CV/" }
+  ],
+  "references": [
+    { "label": "GenRecon", "href": "https://kasothaphie.github.io/GenRecon/" },
+    { "label": "SceneTex", "href": "https://arxiv.org/abs/2311.17261" }
+  ],
+  "tags": ["3D Scene Generation", "3D Scene Reconstruction", "Generative 3D", "3D Generation", "2D Generation", "Retexturing"],
+  "type": ["Master Thesis", "Guided Research", "IDP"],
+  "state": "open"
+}

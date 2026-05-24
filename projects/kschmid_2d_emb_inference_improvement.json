@@ -1,0 +1,28 @@
+{
+  "title": "2D Inference Guidance for Generative Scene Reconstruction",
+  "supervisor": {
+    "name": "Katharina Schmid",
+    "href": "https://kasothaphie.github.io"
+  },
+  "email": "katharina.s.schmid@tum.de",
+  "teaser": "Generative scene reconstruction methods such as GenRecon can reconstruct complete indoor 3D scenes from sparse RGB observations, but often struggle to recover accurate geometry. This project investigates whether training-free inference guidance based on texture-invariant image embeddings can improve structural quality and shape consistency during reconstruction.",
+  "abstract": "Sparse-view 3D scene reconstruction methods such as GenRecon can generate complete indoor scene meshes from only a few RGB images. GenRecon follows a three-stage pipeline consisting of occupancy generation, shape generation, and texture generation. While this approach can produce complete PBR-ready reconstructions, the generated geometry often contains structural inaccuracies and missing details. This project investigates whether geometry quality can be improved through training-free inference guidance based on texture-invariant image embeddings. First, a model will be trained to transform DINOv3 embeddings of textured renderings into embeddings of corresponding untextured renderings, aiming to preserve geometric information while reducing appearance dependence. During inference, intermediate geometry predictions are decoded into untextured meshes and rendered from the input viewpoints. Embeddings of rendered and input views are compared using the learned texture-invariant representation, and the resulting loss is backpropagated to guide the latent reconstruction process. The student will implement the embedding prediction model, integrate the guidance mechanism into GenRecon, and evaluate its impact on geometric accuracy and structural consistency.",
+  "milestones": [
+    "Understand GenRecon, flow-matching, and inference guidance. Set up GenRecon and run inference pipeline.", 
+    "Create dataset: Download 3D indoor scene dataset (e.g., 3D-FRONT, SAGE-10k), create textured and untextured renderings from the same camera, and get the 2D embeddings.",
+    "Train a model that predicts the 2D embeddings of textureless renderings given the 2D embedding of textured renderings.",
+    "Implement training-free inference guidance: for each flow-matching step decode intermediate predictions to an untextured mesh and render this mesh. Implement embedding-based guidance loss and latent updates.",
+    "Evaluation: Compare against GenRecon baseline, assess qualitative and quantitative performance."],
+  "prerequisites": [
+    { "label": "I2DL", "href": "https://www.niessnerlab.org/teaching.html" },
+    { "label": "Advanced Deep Learning for Computer Vision (ADL4CV)", "href": "https://niessner.github.io/ADL4CV/" }
+  ],
+  "references": [
+    { "label": "GenRecon", "href": "https://kasothaphie.github.io/GenRecon/" },
+    { "label": "Trellis.2", "href": "https://arxiv.org/abs/2512.14692" },
+    { "label": "Flow Matching", "href": "https://arxiv.org/abs/2210.02747"}
+  ],
+  "tags": ["3D Scene Generation", "3D Scene Reconstruction", "Multi-View 3D Reconstruction", "Generative 3D", "3D Generation", "3D Reconstruction"],
+  "type": ["Master Thesis", "Guided Research", "IDP"],
+  "state": "open"
+}
