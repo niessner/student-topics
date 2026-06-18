@@ -10,6 +10,15 @@ async function load() {
   const res = await fetch("projects.json");
   state.projects = await res.json();
   for (const p of state.projects) if (p.type) p.type.sort();
+
+  // Pre-apply a search filter from the URL, e.g. ?search=Haoxuan%20Li
+  const initialSearch = new URLSearchParams(location.search).get("search");
+  if (initialSearch) {
+    state.query = initialSearch.trim().toLowerCase();
+    const box = document.getElementById("search");
+    if (box) box.value = initialSearch;
+  }
+
   renderTypeFilters();
   renderTagFilters();
   wireClearButton("type-clear", state.activeTypes, renderTypeFilters);
