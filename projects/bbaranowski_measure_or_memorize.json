@@ -1,0 +1,29 @@
+{
+  "title": "Measure or Memorize? Disentangling Metric Size Priors from Visual Evidence in VLMs",
+  "supervisor": { "name": "Bartlomiej Baranowski", "href": "https://baranowskibrt.github.io/" },
+  "email": "bartlomiej.baranowski@tum.de",
+  "teaser": "When a VLM says the table is 120 cm wide, is it measuring the table or reciting the average table? Quantify how much of VLM metric spatial reasoning is class prior versus visual evidence, using counter-prior rendered scenes where the two disagree.",
+  "abstract": "Vision-language models answer metric spatial questions (object sizes, distances) far better than chance, yet a single image is scale-ambiguous: without camera metadata, a large room seen from afar and a small room seen up close produce nearly the same pixels. Any model answering in centimetres must therefore combine class-size priors (chairs are around 80 cm) with the metric cues the scene actually provides (objects of known size, floor perspective, multi-view parallax). Priors are not cheating, humans lean on canonical object sizes too. The failure mode is a model that only uses the prior and ignores the instance in front of it. In this project you will measure that balance quantitatively. You will first elicit the model's text-only size prior per object class, then regress its answers on real benchmarks (VSI-Bench, Q-Spatial-Bench) against class prior and instance ground truth to estimate prior and evidence weights per question type. You will then build a controlled rendered benchmark from assets with known physical dimensions, rescaling target objects away from their canonical size and rendering matched cue conditions (with and without an in-frame reference object of stable size, single view and multi-view), to measure whether the evidence weight rises when the scene supplies metric disambiguation, as a rational observer's would. Finally you will test whether interventions like reference-object prompting genuinely increase evidence use or merely recalibrate the prior, a distinction only counter-prior stimuli can make.",
+  "milestones": [
+    "Prior elicitation per object class and regression decomposition of model answers on VSI-Bench and Q-Spatial-Bench into prior and evidence weights",
+    "Counter-prior rendered evaluation set: rescaled objects with known dimensions across matched metric-cue conditions",
+    "Evidence-weighting curves as a function of available metric cues (reference object present or absent, single view vs multi-view)",
+    "Intervention study: does reference-object prompting raise the evidence weight or only recalibrate answers, analyzed as a change in weighting rather than accuracy"
+  ],
+  "prerequisites": [
+    { "label": "Introduction to Deep Learning (I2DL)", "href": "https://niessner.github.io/I2DL/" },
+    { "label": "Experience with PyTorch and running large open-weight VLMs", "href": "https://pytorch.org/" },
+    { "label": "Basic Blender or rendering-pipeline familiarity is a plus", "href": "https://www.blender.org/" }
+  ],
+  "references": [
+    { "label": "Yang et al., Thinking in Space (VSI-Bench, CVPR 2025)", "href": "https://arxiv.org/abs/2412.14171" },
+    { "label": "Liao et al., Reasoning Paths with Reference Objects Elicit Quantitative Spatial Reasoning in LVLMs (EMNLP 2024)", "href": "https://arxiv.org/abs/2409.09788" },
+    { "label": "Pixels Versus Priors: Controlling Knowledge Priors in VLMs through Visual Counterfacts (2025)", "href": "https://arxiv.org/abs/2505.17127" },
+    { "label": "Chen et al., SpatialVLM (CVPR 2024)", "href": "https://arxiv.org/abs/2401.12168" },
+    { "label": "Konkle and Oliva, Canonical Visual Size for Real-World Objects (JEP:HPP 2011)", "href": "https://konklab.fas.harvard.edu/Papers/Konkle_2011_JEPHPP.pdf" },
+    { "label": "Collins et al., ABO: Dataset and Benchmarks for Real-World 3D Object Understanding (CVPR 2022)", "href": "https://arxiv.org/abs/2110.06199" }
+  ],
+  "tags": ["VLM", "Spatial Reasoning", "Metric Estimation", "Benchmarking", "Priors"],
+  "type": ["Guided Research", "Master Thesis"],
+  "state": "open"
+}

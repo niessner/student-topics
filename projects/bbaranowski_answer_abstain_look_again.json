@@ -1,0 +1,27 @@
+{
+  "title": "Answer, Abstain, or Look Again: Uncertainty-Driven Observation for Spatial Question Answering",
+  "supervisor": { "name": "Bartlomiej Baranowski", "href": "https://baranowskibrt.github.io/" },
+  "email": "bartlomiej.baranowski@tum.de",
+  "teaser": "When a VLM is unsure about a spatial question, is it because it has not seen enough of the scene, or because it cannot do the task at all? Build a selective prediction system that decides whether to answer, abstain, or fetch more frames.",
+  "abstract": "Confidence estimation for vision-language models usually ends at abstention: predict when the answer is likely wrong and refuse to answer. But for spatial questions about a scene observed through sampled video frames, low confidence has two very different causes. Either the model has not seen enough (the queried objects never appeared in a sampled frame), or the model cannot solve the task no matter how much it sees. The first is fixable by looking again, the second is not, and no current confidence method separates them. In this project you will first quantify, per spatial question type on VSI-Bench, how much error is observation deficit versus capability deficit, using an answerability oracle built by evaluating the same questions at increasing frame budgets. You will then train a lightweight resolvability predictor that decides from low-budget confidence signals whether more observation would help, and build acquisition policies that spend a frame budget where uncertainty is resolvable (denser re-sampling, question-guided retrieval of unseen segments, revisiting seen segments at higher resolution). The final system chooses per question between answering, abstaining, and acquiring, and is evaluated with risk-coverage-budget curves against abstention-only and fixed-budget baselines.",
+  "milestones": [
+    "Calibration and answerability study on VSI-Bench across frame budgets, with per-question-type reliability analysis and oracle answerability labels",
+    "Resolvability predictor over low-budget confidence signals, evaluated against the answerability oracle",
+    "Acquisition policies under matched average frame budgets, adaptive per-question allocation vs uniform allocation",
+    "Integrated answer-abstain-acquire system with risk-coverage-budget curves and per-question-type analysis of where looking again beats abstaining"
+  ],
+  "prerequisites": [
+    { "label": "Introduction to Deep Learning (I2DL)", "href": "https://niessner.github.io/I2DL/" },
+    { "label": "Experience with PyTorch and running large open-weight VLMs", "href": "https://pytorch.org/" }
+  ],
+  "references": [
+    { "label": "Kadavath et al., Language Models (Mostly) Know What They Know (2022)", "href": "https://arxiv.org/abs/2207.05221" },
+    { "label": "Whitehead et al., Reliable Visual Question Answering: Abstain Rather Than Answer Incorrectly (ECCV 2022)", "href": "https://arxiv.org/abs/2204.13631" },
+    { "label": "Geifman and El-Yaniv, Selective Classification for Deep Neural Networks (NeurIPS 2017)", "href": "https://arxiv.org/abs/1705.08500" },
+    { "label": "Wang et al., VideoAgent: Long-form Video Understanding with Large Language Model as Agent (ECCV 2024)", "href": "https://arxiv.org/abs/2403.10517" },
+    { "label": "Yang et al., Thinking in Space (VSI-Bench, CVPR 2025)", "href": "https://arxiv.org/abs/2412.14171" }
+  ],
+  "tags": ["VLM", "Spatial Reasoning", "Uncertainty Estimation", "Video Understanding"],
+  "type": ["Guided Research", "Master Thesis"],
+  "state": "open"
+}

@@ -1,0 +1,28 @@
+{
+  "title": "Selective Hearing: Diagnosing and Fixing Instruction Blindness in Vision-Language-Action Models",
+  "supervisor": { "name": "Bartlomiej Baranowski", "href": "https://baranowskibrt.github.io/" },
+  "email": "bartlomiej.baranowski@tum.de",
+  "teaser": "Robot policies that succeed at 98% even when the instruction is replaced with gibberish are not following language — they are recognizing the scene. Build the causal benchmark that proves it, find where conditioning breaks, and fix it with counterfactual training data.",
+  "abstract": "Vision-language-action models are supposed to be language-conditioned, but mounting evidence says they barely read the instruction: on LIBERO, replacing the instruction with gibberish still yields about 98% task success, and recent diagnostic papers confirm that vision shortcuts override language across VLA families. The likely mechanism is a data artifact rather than an architecture flaw: in standard demonstration suites each task has its own initial-state distribution, so task identity is recoverable from pixels alone and nothing in behavior cloning forces the policy to consume the instruction. Published work stops at the diagnosis. In this project you will go after the fix. First, build a matched-initial-state counterfactual benchmark from LIBERO assets, where the same start state admits two goals and only the instruction disambiguates — the one protocol under which instruction use is causally measurable — and run it across two policy families (OpenVLA, pi0.5). Second, attribute the failure: does the policy misparse the instruction, or parse it and ignore it? Oracle instruction rewrites and mid-episode instruction swaps separate the two and bound the recoverable headroom. Third, break the confound in training: synthesize counterfactual demonstrations at matched initial states (MimicGen-style), so identical pixels continue into different outcomes under different instructions, and fine-tune with LoRA — compared at matched budget against an auxiliary instruction-divergence loss and simple text augmentation. The result is a falsifiable claim either way: instruction blindness is removable by data, or it is not — and the benchmark, the headroom number, and the three-arm comparison are citable artifacts regardless. Everything runs in simulation on public checkpoints; no robot required.",
+  "milestones": [
+    "Matched-init counterfactual benchmark from LIBERO assets and BDDL goal predicates, with instruction-following rate, wrong-goal rate, and gibberish floors, replicated across OpenVLA and pi0.5",
+    "Attribution and headroom: oracle instruction rewrites and mid-episode instruction swaps separating misparsing from parse-and-ignore (Guided Research exit point)",
+    "Counterfactual demonstration synthesis at matched initial states plus LoRA fine-tuning, in a three-arm comparison against an instruction-divergence auxiliary loss and text augmentation",
+    "Full evaluation: listening vs nominal-success trade-off, LIBERO-PRO language dimensions, and transfer of the winning recipe to the second policy family"
+  ],
+  "prerequisites": [
+    { "label": "Introduction to Deep Learning (I2DL)", "href": "https://niessner.github.io/I2DL/" },
+    { "label": "Experience with PyTorch and comfort reading large model codebases; no robotics hardware experience needed (all simulation)", "href": "https://pytorch.org/" }
+  ],
+  "references": [
+    { "label": "Liu et al., LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning (NeurIPS 2023)", "href": "https://arxiv.org/abs/2306.03310" },
+    { "label": "LIBERO-PRO: Robust Evaluation of Vision-Language-Action Models Beyond Memorization (2025)", "href": "https://arxiv.org/abs/2510.03827" },
+    { "label": "Kim et al., OpenVLA: An Open-Source Vision-Language-Action Model (CoRL 2024)", "href": "https://arxiv.org/abs/2406.09246" },
+    { "label": "When Vision Overrides Language (2026)", "href": "https://arxiv.org/abs/2602.17659" },
+    { "label": "Mandlekar et al., MimicGen: A Data Generation System for Scalable Robot Learning using Human Demonstrations (CoRL 2023)", "href": "https://arxiv.org/abs/2310.17596" },
+    { "label": "Black et al., pi0: A Vision-Language-Action Flow Model for General Robot Control (2024)", "href": "https://arxiv.org/abs/2410.24164" }
+  ],
+  "tags": ["VLA", "Robot Learning", "Language Grounding", "Benchmarking"],
+  "type": ["Guided Research", "Master Thesis"],
+  "state": "open"
+}
