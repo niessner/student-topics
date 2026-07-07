@@ -1,0 +1,33 @@
+{
+  "title": "SceneRoll: Stable Unbounded 3D Gaussian Scene Generation via Masked Diffusion Forcing",
+  "supervisor": {
+    "name": "Yu Chi",
+    "href": "https://ychgoaround.github.io/"
+  },
+  "email": "yu.chi@tum.de",
+  "teaser": "Replace the causal transformer of GaussianGPT with a masked diffusion-forcing model over its discrete 3D Gaussian scene tokens: per-token corruption levels enable arbitrary-region scene completion, stabler unbounded rollout, and uncertainty-aware conditioning on partial real-world scans.",
+  "abstract": "GaussianGPT tokenizes 3D Gaussian Splatting scenes into a discrete latent grid (a sparse-convolutional autoencoder with lookup-free quantization) and generates 4m x 4m scene chunks with a causal transformer over xyz-serialized tokens. The autoregressive formulation, however, restricts conditioning to serialization-order prefixes, and generation quality degrades with distance from the seed region during unbounded outpainting — markedly worse along the serialization axis than across it. Diffusion forcing offers a principled alternative: every token carries an independent corruption level, causality is controlled through noise rather than attention masks, and any subset of tokens — even unreliable ones — can serve as conditioning. In this project, we keep GaussianGPT's released, pretrained scene tokenizer and replace its causal transformer with a full-attention model trained under a masked (discrete) diffusion-forcing objective, following recent discrete analogues such as MaskFlow and AR-DF. Our hypotheses: (i) arbitrary-region scene completion falls out of the training objective, in a setting where prefix-based autoregression structurally cannot compete; (ii) rolling out with partially-corrupted self-generated context stabilizes unbounded scene generation and removes the axis-dependent degradation; (iii) mapping real-scan confidence to per-token corruption levels enables uncertainty-aware completion of partial ScanNet++ scans — an open problem explicitly named by the original paper. As a bonus, parallel masked decoding should cut per-chunk generation time well below sequential autoregressive sampling.",
+  "milestones": [
+    "Literature review (diffusion forcing and its transformer variant, discrete analogues MaskFlow / AR-DF / block diffusion, chunk-based 3D scene generation such as L3DG and NuiScene); set up the released GaussianGPT codebase, reproduce autoregressive sampling on 3D-FRONT, and measure the frozen tokenizer's reconstruction ceiling (render-space PSNR/LPIPS of encode-decode), which upper-bounds everything downstream.",
+    "Train a full-attention transformer (reusing GaussianGPT's 3D RoPE) with a masked diffusion-forcing objective on feature tokens over ground-truth structure for single scene chunks, using region-structured rather than i.i.d. per-token masking; match the autoregressive baseline on FID/KID and compare sampling speed.",
+    "Extend the objective to scene structure (occupancy as categorical states on the dense latent grid, or interleaved position tokens); evaluate arbitrary-region completion against the prefix-only autoregressive baseline and L3DG with RePaint, using the original completion protocol plus new non-prefix region layouts.",
+    "Unbounded scene rollout with sliding windows and partially-corrupted self-generated context; reproduce the KID-per-tile degradation analysis of GaussianGPT and test whether the axis-dependent quality falloff disappears.",
+    "(Stretch) Uncertainty-aware real-scan completion: map per-region scan confidence to per-token corruption levels and evaluate scene completion on partial ScanNet++ scans against completion baselines."
+  ],
+  "prerequisites": [
+    { "label": "Introduction to Deep Learning (I2DL)", "href": "https://niessner.github.io/I2DL/" },
+    { "label": "Advanced Deep Learning for Computer Vision: Visual Computing (ADL4CV)", "href": "https://niessner.github.io/ADL4CV/" },
+    { "label": "3D Scanning & Motion Capture (3DSMC)", "href": "https://niessner.github.io/3DScanning/" }
+  ],
+  "references": [
+    { "label": "GaussianGPT: Towards Autoregressive 3D Gaussian Scene Generation", "href": "https://nicolasvonluetzow.github.io/GaussianGPT/" },
+    { "label": "Diffusion Forcing: Next-token Prediction Meets Full-Sequence Diffusion", "href": "https://arxiv.org/abs/2407.01392" },
+    { "label": "History-Guided Video Diffusion (Diffusion Forcing Transformer)", "href": "https://arxiv.org/abs/2502.06764" },
+    { "label": "MaskFlow: Discrete Flows for Flexible and Efficient Long Video Generation", "href": "https://arxiv.org/abs/2502.11234" },
+    { "label": "Lumos-1: On Autoregressive Video Generation with Discrete Diffusion from a Unified Model Perspective", "href": "https://arxiv.org/abs/2507.08801" },
+    { "label": "L3DG: Latent 3D Gaussian Diffusion", "href": "https://arxiv.org/abs/2410.13530" }
+  ],
+  "tags": ["Generative 3D", "3D Gaussian Splatting", "Diffusion Models", "Scene Generation"],
+  "type": ["Master Thesis", "Guided Research", "IDP"],
+  "state": "open"
+}
