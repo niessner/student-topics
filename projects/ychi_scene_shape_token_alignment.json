@@ -1,17 +1,18 @@
 {
-  "title": "TokenBridge: Aligning View- and Geometry-Derived Tokens for 3D Scene Understanding",
+  "title": "TokenBridge: Do View- and Geometry-Derived 3D Representations Converge?",
   "supervisor": {
     "name": "Yu Chi",
     "href": "https://ychgoaround.github.io/"
   },
   "email": "yu.chi@tum.de",
-  "teaser": "A CLIP-style alignment between image-derived 3D tokens (from feed-forward reconstruction) and geometry-derived 3D shape tokens, used as a probe for what each modality contributes to a unified 3D scene representation.",
-  "abstract": "Recent feed-forward reconstruction models such as VGGT-Ω produce per-frame register tokens that implicitly encode 3D scene information from RGB views, while shape-token models such as 3DShape2VecSet learn explicit 3D representations directly from point clouds or meshes. These two token families describe the same underlying scenes from fundamentally different starting points: view-derived tokens carry appearance, lighting, and partial geometry conditioned on observed viewpoints, whereas geometry-derived tokens carry complete shape but no appearance. In this project, we train a CLIP-style contrastive alignment between the two token spaces on paired RGB-view and 3D-shape datasets (Objaverse, CO3D, ShapeNet), and use the resulting alignment as a probe to quantify what each modality knows that the other does not. Beyond the diagnostic value, we investigate whether the alignment improves downstream tasks — e.g., whether registers fine-tuned for shape alignment encode more complete geometry, useful for novel-view synthesis or single-view 3D reconstruction.",
+  "teaser": "A training-free study of whether the internal tokens of feed-forward reconstruction models and the latents of native 3D shape encoders already align — measured with representation-similarity metrics, closed-form bridges for zero-shot image-to-shape retrieval, and stitching probes into frozen shape decoders.",
+  "abstract": "Feed-forward reconstruction models such as VGGT, VGGT-Ω, and Depth Anything 3 compute internal tokens that implicitly encode 3D information from RGB views, while native shape encoders such as 3DShape2VecSet or Dora learn latents directly from complete geometry. These two token families describe the same objects from fundamentally different starting points: appearance plus viewpoint-conditioned partial geometry on one side, complete shape without appearance on the other. Rather than training an expensive CLIP-style alignment between them, this project asks whether the two spaces already align — extending the Platonic Representation Hypothesis to 3D. We (i) build an alignment atlas across models and layers using training-free similarity metrics (calibrated mutual k-NN, cross-validated Procrustes, debiased CKA) on paired render/mesh data, with the controls this literature demands (within-category analysis, texture randomization, view-count sweeps, out-of-distribution evaluation); (ii) fit closed-form Procrustes and affine bridges on anchor pairs and evaluate zero-shot image-to-shape retrieval against contrastively trained ceilings such as OpenShape and Uni3D; and (iii) run a reconstruction-by-translation probe — a capacity ladder from ridge regression to a small cross-attention adapter mapping view tokens into a frozen shape-VAE latent space, decoded by its frozen decoder — quantifying in Chamfer and F-score terms how much complete, amodal geometry view tokens carry and whether it is linearly accessible. The central hypothesis: stronger reconstruction models align increasingly with geometry-native latents. All experiments run on frozen encoders and cached features; nothing requires large-scale training.",
   "milestones": [
-    "Literature review on view-derived (VGGT, VGGT-Ω, DUSt3R) and geometry-derived (3DShape2VecSet, Point-BERT, CLAY) token representations; preparation of paired RGB-view and 3D-shape datasets (Objaverse-LVIS, ShapeNet renders, CO3D).",
-    "Extract VGGT-Ω scene tokens from rendered/captured views and shape tokens from corresponding meshes; build a symmetric attention-readout architecture that maps each set to a shared embedding space.",
-    "Train a symmetric InfoNCE alignment on object-level data; evaluate top-K bidirectional retrieval and ablate over the number of views, register pooling strategies, and shape-token encoders.",
-    "Run modality-complementarity probes (ambiguous-pair retrieval, partial-view robustness, scale generalization) and evaluate whether the alignment-fine-tuned registers improve a downstream geometric task (single-view 3D reconstruction or novel view synthesis) compared to the frozen VGGT-Ω baseline."
+    "Literature review (Platonic Representation Hypothesis and its critiques, training-free latent alignment, probing 3D awareness of foundation models, model stitching); build the paired dataset (Objaverse subset with existing render packs plus ShapeNet, with GSO/OmniObject3D held out for out-of-distribution evaluation) and run one-time feature extraction for the model zoo: view-derived (VGGT, DUSt3R/MASt3R, Depth Anything 3) and geometry-derived (3DShape2VecSet, Dora-VAE, self-supervised point encoders).",
+    "Alignment atlas: layer-by-layer calibrated mutual k-NN, cross-validated Procrustes, and debiased CKA across all model pairs, with random-init and shuffled-pair baselines, within-category analysis, texture randomization, and view-count sweeps; test whether alignment with geometry-native latents grows with reconstruction-model capability.",
+    "Closed-form bridges: anchor-based Procrustes/affine maps (relative-representations toolbox) for zero-shot few-image-to-shape retrieval, benchmarked against contrastively trained OpenShape/Uni3D as the upper ceiling and render-based retrieval as the training-free baseline.",
+    "Reconstruction-by-translation probe: train the capacity ladder (ridge, linear, small cross-attention resampler) from view tokens into the frozen shape-VAE latent space and decode with the frozen decoder; report Chamfer/F-score as a function of adapter capacity, number of views, occlusion level, and paired-data budget.",
+    "(Stretch) Use the findings for a lightweight transfer: LoRA-distill complete-shape priors into a reconstruction model for feed-forward amodal completion, or use geometry-derived latents as a REPA-style teacher for a small 3D latent generator."
   ],
   "prerequisites": [
     { "label": "Introduction to Deep Learning (I2DL)", "href": "https://niessner.github.io/I2DL/" },
@@ -19,10 +20,12 @@
     { "label": "3D Scanning & Motion Capture (3DSMC)", "href": "https://niessner.github.io/3DScanning/" }
   ],
   "references": [
-    { "label": "VGGT-Ω: Feed-Forward Reconstruction at Scale", "href": "https://vggt-omega.github.io/" },
+    { "label": "The Platonic Representation Hypothesis", "href": "https://arxiv.org/abs/2405.07987" },
+    { "label": "Escaping Plato's Cave: Towards the Alignment of 3D and Text Latent Spaces", "href": "https://arxiv.org/abs/2503.05283" },
+    { "label": "VGGT: Visual Geometry Grounded Transformer", "href": "https://arxiv.org/abs/2503.11651" },
     { "label": "3DShape2VecSet: A 3D Shape Representation for Neural Fields and Generative Diffusion Models", "href": "https://1zb.github.io/3DShape2VecSet/" },
-    { "label": "Learning Transferable Visual Models From Natural Language Supervision (CLIP)", "href": "https://arxiv.org/abs/2103.00020" },
-    { "label": "The Platonic Representation Hypothesis", "href": "https://arxiv.org/abs/2405.07987" }
+    { "label": "Relative Representations Enable Zero-Shot Latent Space Communication", "href": "https://arxiv.org/abs/2209.15430" },
+    { "label": "Probing the 3D Awareness of Visual Foundation Models", "href": "https://arxiv.org/abs/2404.08636" }
   ],
   "tags": ["3D Representation Learning", "Cross-Modal Alignment", "3D Reconstruction", "Shape Tokens"],
   "type": ["Master Thesis", "Guided Research", "IDP"],
