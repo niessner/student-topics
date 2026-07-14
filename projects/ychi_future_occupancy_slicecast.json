@@ -1,0 +1,33 @@
+{
+  "title": "SliceCast: Forecasting Volumetric Scene Occupancy with a Pretrained Video Generation Prior",
+  "supervisor": {
+    "name": "Yu Chi",
+    "href": "https://ychgoaround.github.io/"
+  },
+  "email": "yu.chi@tum.de",
+  "teaser": "Repurpose a pretrained text-to-video diffusion model into a single-step forecaster of future 3D semantic-occupancy volumes, painted as slice-videos — testing whether video generative priors encode the 4D structure of the world or only the motion of visible textures.",
+  "abstract": "Video generation models are pitched as world models, yet they are evaluated almost exclusively on futures of appearance — and physics benchmarks show that visual realism does not imply physical understanding. Occupancy forecasting is the appearance-stripped version of future prediction: given a few seconds of RGB video, predict where matter will be, including where the camera cannot see. In this project we repurpose a pretrained text-to-video diffusion model (WAN 2.1) into a single-step, feed-forward forecaster of future semantic-occupancy volumes: the volume is painted as a slice-video and the task is switched by a text prompt, with no architectural changes to the backbone. Existing generative occupancy world models (OccWorld, OccSora) train custom tokenizers and architectures from scratch on occupancy data, while pretrained video priors have so far only been transferred to 2.5D future depth. We ask three questions: (i) does a general video prior transfer to volumetric forecasting, and with how much less labeled data than scratch-trained world models — occupancy labels are the expensive resource in this field; (ii) which mapping of the model's time axis to the volume — slice-major, time-major, or a tiled volume canvas — best recycles the temporal prior, i.e., what does that prior actually transfer to; and (iii) does the volumetric readout exhibit object permanence, correctly forecasting the occupancy of agents that are occluded in the input frames — a direct probe of world-model claims that RGB metrics cannot see. Evaluation follows established 4D occupancy protocols on Occ3D-nuScenes, with data-efficiency curves as the headline comparison; the analysis questions make the project informative regardless of where the benchmark numbers land.",
+  "milestones": [
+    "Literature review (occupancy world models — OccWorld, OccSora, Cam4DOcc; the GenCeption recipe; pretrained-prior future-depth forecasting; slice-video precedents from medical imaging); build the Occ3D-nuScenes slice-video data pipeline; pass the three sanity gates on WAN 2.1 (1.3B) with LoRA: frozen-VAE round-trip of occupancy slice-videos (the go/no-go test), identity behavior at step zero, and a 20-clip overfit.",
+    "Static stage: predict the current occupancy volume from the current RGB clip; ablate slice ordering and occupancy encodings (class palette, soft occupancy); compare against a per-slice image-diffusion baseline to isolate what the video prior contributes.",
+    "Forecasting stage: past RGB to 3-second future volumes under the three time-axis layouts (slice-major, time-major, tiled canvas); evaluate with established 4D occupancy protocols (mIoU/IoU per horizon, ray-based metrics) against copy-paste-static and scratch-trained world-model baselines; measure data-efficiency curves at 1/10/100% of the training data.",
+    "Analysis: object-permanence probes on sequences where agents are occluded in the input frames; attention-transfer analysis (do temporal attention heads become cross-slice heads?); pretrained vs. from-scratch vs. image-prior initialization comparison.",
+    "(Stretch) Scale to the 14B backbone, add trajectory conditioning toward planning-style rollouts, or transfer the static stage to indoor scene completion on ScanNet++."
+  ],
+  "prerequisites": [
+    { "label": "Introduction to Deep Learning (I2DL)", "href": "https://niessner.github.io/I2DL/" },
+    { "label": "Advanced Deep Learning for Computer Vision: Visual Computing (ADL4CV)", "href": "https://niessner.github.io/ADL4CV/" },
+    { "label": "3D Scanning & Motion Capture (3DSMC)", "href": "https://niessner.github.io/3DScanning/" }
+  ],
+  "references": [
+    { "label": "GenCeption: Video Generation Models are General-Purpose Vision Learners", "href": "https://arxiv.org/abs/2607.09024" },
+    { "label": "OccWorld: Learning a 3D Occupancy World Model for Autonomous Driving", "href": "https://arxiv.org/abs/2311.16038" },
+    { "label": "Cam4DOcc: Benchmark for Camera-Only 4D Occupancy Forecasting in Autonomous Driving Applications", "href": "https://arxiv.org/abs/2311.17663" },
+    { "label": "OccSora: 4D Occupancy Generation Models as World Simulators for Autonomous Driving", "href": "https://arxiv.org/abs/2405.20337" },
+    { "label": "UniFuture: A 4D Driving World Model for Future Generation and Perception", "href": "https://arxiv.org/abs/2503.13587" },
+    { "label": "Wan: Open and Advanced Large-Scale Video Generative Models", "href": "https://arxiv.org/abs/2503.20314" }
+  ],
+  "tags": ["World Models", "Occupancy Forecasting", "Diffusion Models", "Autonomous Driving"],
+  "type": ["Master Thesis", "Guided Research", "IDP"],
+  "state": "open"
+}
