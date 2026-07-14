@@ -1,0 +1,33 @@
+{
+  "title": "DepthDrift: Is Temporally Smooth Video Depth Actually 3D-Consistent?",
+  "supervisor": {
+    "name": "Yu Chi",
+    "href": "https://ychgoaround.github.io/"
+  },
+  "email": "yu.chi@tum.de",
+  "teaser": "A systematic 3D audit of generative video depth models: back-project and TSDF-fuse their depth videos on ScanNet++ against laser-scan ground truth to measure whether the temporal smoothness of video diffusion priors actually delivers multi-view-consistent geometry.",
+  "abstract": "Video-diffusion-based depth estimators such as DepthCrafter, Video Depth Anything, and the WAN-based DVD — and most recently generalist perceivers like GenCeption — are built on the claim that video generative priors internalize 3D geometry and deliver temporally consistent depth. Yet every published evaluation of these models is per-frame and image-space: no work has back-projected their depth videos into 3D and measured whether the frames actually agree with each other, and recent 3D benchmarks (SpatialBench, E3D-Bench) omit video-diffusion depth entirely. This project runs the missing audit. We evaluate a roster of video-generative, image-diffusion, and discriminative depth models on ScanNet++ iPhone videos against laser-scan ground truth: cross-frame consistency via the per-frame-versus-per-video alignment gap, pose-aware reprojection error, and scale drift across chunked-inference window boundaries; and 3D quality by TSDF-fusing the depth videos and scoring accuracy, completeness, and F-score of the fused geometry — including an analysis of flying-pixel artifacts introduced by decoding depth through frozen video VAEs. The central question: does the temporal prior of video generation buy multi-view-consistent geometry, or only smooth-looking depth videos? The resulting tables form the missing generative-video-depth column of current 3D reconstruction benchmarks, directly comparable to published fusion numbers for feed-forward and image-diffusion baselines.",
+  "milestones": [
+    "Literature review (video depth models and their consistency metrics — TAE, warping error, alignment conventions; fusion-based evaluation protocols of Depth Anything 3, Prompt Depth Anything, and SpatialBench); set up the model roster (DVD, DepthCrafter, GeometryCrafter, ChronoDepth; Video Depth Anything and RollingDepth as controls; Depth Anything 3 as the feed-forward reference) and run all models over a ScanNet++ evaluation subset with laser ground truth and COLMAP poses.",
+    "Image-space consistency audit: per-frame versus per-video alignment gap, pose-aware reprojection error, and scale drift across chunked-inference window boundaries on long trajectories; stratify results by model family (video-generative vs. image-diffusion vs. discriminative).",
+    "3D audit: back-project and TSDF-fuse each model's depth (settings compatible with published ScanNet++ fusion tables), score accuracy/completeness/Chamfer/F-score against the laser mesh under both ground-truth and estimated poses; analyze flying-pixel and edge artifacts attributable to the frozen video VAE decoder.",
+    "Synthesis: answer whether the video generative prior measurably improves 3D consistency over per-frame baselines at matched budgets; release the evaluation toolkit and benchmark tables.",
+    "(Stretch) Use the findings to improve a model: uncertainty-masked fusion of generative video depth, or consistency-aware fine-tuning of an open WAN-based depth model using its released training suite."
+  ],
+  "prerequisites": [
+    { "label": "Introduction to Deep Learning (I2DL)", "href": "https://niessner.github.io/I2DL/" },
+    { "label": "Advanced Deep Learning for Computer Vision: Visual Computing (ADL4CV)", "href": "https://niessner.github.io/ADL4CV/" },
+    { "label": "3D Scanning & Motion Capture (3DSMC)", "href": "https://niessner.github.io/3DScanning/" }
+  ],
+  "references": [
+    { "label": "GenCeption: Video Generation Models are General-Purpose Vision Learners", "href": "https://arxiv.org/abs/2607.09024" },
+    { "label": "DVD: Deterministic Video Depth Estimation with Generative Priors", "href": "https://arxiv.org/abs/2603.12250" },
+    { "label": "DepthCrafter: Generating Consistent Long Depth Sequences for Open-World Videos", "href": "https://arxiv.org/abs/2409.02095" },
+    { "label": "Video Depth Anything: Consistent Depth Estimation for Super-Long Videos", "href": "https://arxiv.org/abs/2501.12375" },
+    { "label": "SpatialBench: Is Your Spatial Foundation Model an All-Round Player?", "href": "https://arxiv.org/abs/2605.27367" },
+    { "label": "Consistent Video Depth Estimation", "href": "https://arxiv.org/abs/2004.15021" }
+  ],
+  "tags": ["Video Depth Estimation", "Diffusion Models", "3D Reconstruction", "Benchmarking"],
+  "type": ["Master Thesis", "Guided Research", "IDP"],
+  "state": "open"
+}
