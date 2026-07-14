@@ -12,7 +12,7 @@
     "Image-space consistency audit: per-frame versus per-video alignment gap, pose-aware reprojection error, and scale drift across chunked-inference window boundaries on long trajectories; stratify results by model family (video-generative vs. image-diffusion vs. discriminative).",
     "3D audit: back-project and TSDF-fuse each model's depth (settings compatible with published ScanNet++ fusion tables), score accuracy/completeness/Chamfer/F-score against the laser mesh under both ground-truth and estimated poses; analyze flying-pixel and edge artifacts attributable to the frozen video VAE decoder.",
     "Synthesis: answer whether the video generative prior measurably improves 3D consistency over per-frame baselines at matched budgets; release the evaluation toolkit and benchmark tables.",
-    "(Stretch) Use the findings to improve a model: uncertainty-masked fusion of generative video depth, or consistency-aware fine-tuning of an open WAN-based depth model using its released training suite."
+    "(Stretch) Turn the audit into a method: fine-tune an open video-diffusion depth model to additionally predict its own per-pixel reliability as a second prompt-switched output, evaluate its calibration (sparsification/AUSE), and use it for reliability-weighted TSDF fusion evaluated on the benchmark built in this project."
   ],
   "prerequisites": [
     { "label": "Introduction to Deep Learning (I2DL)", "href": "https://niessner.github.io/I2DL/" },
