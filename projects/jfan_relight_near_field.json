@@ -1,0 +1,31 @@
+{
+  "title": "Relighting 3D Gaussian Splatting under Near-Field Illumination with Diffusion Priors",
+  "supervisor": {
+    "name": "Jiahui Fan",
+    "href": "https://whois-jiahui.fun/"
+  },
+  "email": "jiahui.fan@tum.de",
+  "teaser": "This project models the near-field illumination directly, optimizing an irradiance field from background pixels with a diffusion prior to complete the unobserved regions, for an unbiased material-lighting decomposition and consistent light transport when the object is moved.",
+  "abstract": "Relighting approaches widely adopt the distant-lighting assumption: the object is treated as isolated in the scene, and all irradiance it receives is assumed to come from infinitely far away, typically represented as an environment map — which is rarely the case in real capture scenarios. Inter-reflection with nearby objects produces shadows, color bleeding, and even mirror reflections, which are then baked into the recovered geometry and materials, resulting in biased estimation and decomposition; avoiding this currently requires either clearing the capture area or explicitly tracing secondary bounces, which is computationally heavy. This project instead models the near-field illumination directly. Since background objects are visible in all captures, foreground and background pixels are first separated: the former supervise the object's geometry and appearance in a 3D Gaussian Splatting (3DGS) representation, while the latter are used to optimize an irradiance field describing the near-field lighting around the object. A diffusion prior is introduced to compensate for the incomplete observation and the misalignment in depth estimation of the background. The expected result is improved relighting quality with an unbiased material-lighting decomposition, and plausible light transport effects — consistent shadows and color bleeding — when moving the object within the reconstructed or relit scene.",
+  "milestones": [
+    "Foreground-background separation and joint optimization of the object (3DGS) and a near-field irradiance field from background pixels.",
+    "Integrating a diffusion prior to complete the unobserved background regions.",
+    "Incorporating the recovered near-field lighting into the material-lighting decomposition; evaluating relighting quality against distant-lighting baselines.",
+    "Relocating the object within the reconstructed/relit scene with consistent near-field light transport effects."
+  ],
+  "prerequisites": [
+    { "label": "Introduction to Deep Learning (I2DL)", "href": "https://niessner.github.io/I2DL/" },
+    { "label": "Advanced Deep Learning for Computer Vision: Visual Computing (ADL4CV)", "href": "https://niessner.github.io/ADL4CV/" },
+    "Basic understanding of physically based rendering: the rendering equation, BRDFs, and image-based lighting.",
+    "Experience with 3DGS/NeRF, inverse rendering, or diffusion models is preferred." 
+  ],
+  "references": [
+    { "label": "Relightable 3D Gaussians: Realistic Point Cloud Relighting with BRDF Decomposition and Ray Tracing", "href": "https://arxiv.org/pdf/2311.16043" },
+    { "label": "TensoIR: Tensorial Inverse Rendering", "href": "https://openaccess.thecvf.com/content/CVPR2023/papers/Jin_TensoIR_Tensorial_Inverse_Rendering_CVPR_2023_paper.pdf" },
+    { "label": "NeILF++: Inter-Reflectable Light Fields for Geometry and Material Estimation", "href": "https://arxiv.org/abs/2303.17147" },
+    { "label": "IR-HGP: Physically-Aware Gaussian Inverse Rendering for High-Illumination Scenes via Generative Priors", "href": "https://openaccess.thecvf.com/content/CVPR2026/papers/Zhang_IR-HGP_Physically-Aware_Gaussian_Inverse_Rendering_for_High-Illumination_Scenes_via_Generative_CVPR_2026_paper.pdf" }
+  ],
+  "tags": ["Relightable 3D Reconstruction", "Inverse Rendering", "3D Gaussian Splatting"],
+  "type": ["IDP", "Guided Research", "Master Thesis"],
+  "state": "open"
+}

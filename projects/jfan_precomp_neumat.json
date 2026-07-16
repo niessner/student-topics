@@ -1,0 +1,30 @@
+{
+  "title": "Precomputed Environment Lighting for Neural Materials",
+  "supervisor": {
+    "name": "Jiahui Fan",
+    "href": "https://whois-jiahui.fun/"
+  },
+  "email": "jiahui.fan@tum.de",
+  "teaser": "This project structures the neural BRDF so that its illumination-independent part can be precomputed into a directional-albedo table and indexed against standard prefiltered environment maps, making neural materials compatible with existing real-time image-based-lighting infrastructure and giving deterministic, noise-free evaluation.",
+  "abstract": "Analytic material models such as Cook-Torrance are rendered efficiently under environment lighting via the split-sum approximation: the illumination integral reduces to a query into a roughness-indexed prefiltered environment map plus a 2D BRDF lookup table. Neural material representations capture complex appearance well beyond analytic models, but no comparable precomputed integrator exists for them: rendering neural materials under environment maps currently relies on Monte Carlo estimation plus importance sampling, which directly leads to slow and heavy multiple network inferences. This project aims to close that gap. The core idea is to structure the neural BRDF in the Rusinkiewicz half/difference parameterization and to enforce, during training, a decomposition into an equivalent GGX roughness and Fresnel reflectance, multiplied by a bounded residual modulation network that captures the remaining appearance components, to index standard prefiltered chains. The illumination-independent part of the integral is precomputed per material as a directional-albedo table — making neural materials compatible with existing real-time image-based-lighting infrastructure, and providing deterministic, noise-free evaluation that also benefits differentiable pipelines, such as inverse rendering.",
+  "milestones": [
+    "Training the disentangled neural material representation with regularization.",
+    "Building the precomputation and shading pipeline, validate on existing inverse rendering (3DGS/NeRF) methods.",
+    "Quantifying accuracy and performance against Monte Carlo references and neural importance-sampling baselines.",
+    "Extending to multi-lobe mixtures for anisotropic and multi-modal materials."
+  ],
+  "prerequisites": [
+    { "label": "Introduction to Deep Learning (I2DL)", "href": "https://niessner.github.io/I2DL/" },
+    { "label": "Basic understanding of physically based rendering: the rendering equation, BRDFs, and importance sampling.", "href": "https://www.pbr-book.org/" },
+    "Experience with 3DGS/NeRF-based inverse rendering is preferred."
+  ],
+  "references": [
+    { "label": "Neural BRDF Representation and Importance Sampling", "href": "https://onlinelibrary.wiley.com/doi/10.1111/cgf.14335" },
+    { "label": "NeuMIP: Multi-Resolution Neural Materials", "href": "https://arxiv.org/abs/2104.02789" },
+    { "label": "Unified Neural Encoding of BTFs", "href": "https://discovery.ucl.ac.uk/id/eprint/10094250/7/Weyrich_rainer2020unified.pdf" },
+    { "label": "Relightable 3D Gaussians: Realistic Point Cloud Relighting with BRDF Decomposition and Ray Tracing", "href": "https://arxiv.org/pdf/2311.16043" }
+  ],
+  "tags": ["Rendering", "BRDF", "Appearance Modeling"],
+  "type": ["IDP", "Guided Research", "Master Thesis"],
+  "state": "open"
+}
