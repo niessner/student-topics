@@ -15,9 +15,7 @@
   ],
   "prerequisites": [
     { "label": "Introduction to Deep Learning (I2DL)", "href": "https://niessner.github.io/I2DL/" },
-    { "label": "Advanced Deep Learning for Computer Vision: Visual Computing (ADL4CV)", "href": "https://niessner.github.io/ADL4CV/" },
-    "Basic understanding of physically based rendering: the rendering equation, BRDFs, and image-based lighting.",
-    "Experience with 3DGS/NeRF, inverse rendering, or diffusion models is preferred." 
+    { "label": "Advanced Deep Learning for Computer Vision: Visual Computing (ADL4CV)", "href": "https://niessner.github.io/ADL4CV/" }
   ],
   "references": [
     { "label": "Relightable 3D Gaussians: Realistic Point Cloud Relighting with BRDF Decomposition and Ray Tracing", "href": "https://arxiv.org/pdf/2311.16043" },

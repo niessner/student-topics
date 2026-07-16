@@ -15,8 +15,7 @@
   ],
   "prerequisites": [
     { "label": "Introduction to Deep Learning (I2DL)", "href": "https://niessner.github.io/I2DL/" },
-    { "label": "Basic understanding of physically based rendering: the rendering equation, BRDFs, and importance sampling.", "href": "https://www.pbr-book.org/" },
-    "Experience with 3DGS/NeRF-based inverse rendering is preferred."
+    { "label": "Basic understanding of physically based rendering: the rendering equation, BRDFs, and importance sampling.", "href": "https://www.pbr-book.org/" }
   ],
   "references": [
     { "label": "Neural BRDF Representation and Importance Sampling", "href": "https://onlinelibrary.wiley.com/doi/10.1111/cgf.14335" },
