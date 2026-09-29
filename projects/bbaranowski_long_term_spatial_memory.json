@@ -1,0 +1,59 @@
+{
+  "title": "Long-Term Spatial Memory for Vision-Language Models in Changing Scenes",
+  "supervisor": {
+    "name": "Bartlomiej Baranowski",
+    "href": "https://baranowskibrt.github.io/"
+  },
+  "email": "bartlomiej.baranowski@tum.de",
+  "teaser": "A vision-language model that walks through a home for an hour cannot keep every frame in context. Build a compact spatial memory that keeps what later questions need and updates it when objects move.",
+  "abstract": "Spatial VLMs answer questions from a fixed set of frames. Real use looks different: an assistant or robot observes the same home for hours and over many visits, and a question may depend on something seen long ago or on two places never visible together. Keeping or retrieving raw frames grows with the length of the stream, and neither has any notion that the world changed since, for example that the mug seen on the kitchen counter now stands on the living-room table. The goal of this project is a learned spatial memory that a VLM writes while it observes and reads when a question arrives. It should keep objects, their places and their last known state, forget what no question will need, and tell an object that simply has not been seen recently apart from one that was seen somewhere else. What the memory stores, how it is written and forgotten, and how changes are detected are open design choices for the student. The comparison that matters is against keeping or retrieving frames at the same memory size, on long walkthroughs and on episodes where the scene changes. The focus is reasoning over what was observed, not reconstructing geometry, which separates this topic from memory for streaming 3D reconstruction.",
+  "milestones": [
+    "Long-horizon evaluation: long walkthroughs and scene-change episodes with questions that depend on earlier observations",
+    "A learned spatial memory that the VLM writes while observing and reads when answering",
+    "Correct updates when the scene changes, separating objects not seen recently from objects that moved",
+    "Comparison against keeping or retrieving frames at equal memory size"
+  ],
+  "prerequisites": [
+    {
+      "label": "Introduction to Deep Learning (I2DL)",
+      "href": "https://niessner.github.io/I2DL/"
+    },
+    {
+      "label": "Experience with PyTorch and running large open-weight VLMs",
+      "href": "https://pytorch.org/"
+    }
+  ],
+  "references": [
+    {
+      "label": "Yang et al., Thinking in Space (VSI-Bench, CVPR 2025)",
+      "href": "https://arxiv.org/abs/2412.14171"
+    },
+    {
+      "label": "He et al., MA-LMM: Memory-Augmented Large Multimodal Model for Long-Term Video Understanding (CVPR 2024)",
+      "href": "https://arxiv.org/abs/2404.05726"
+    },
+    {
+      "label": "Wang et al., Continuous 3D Perception Model with Persistent State (CUT3R, CVPR 2025)",
+      "href": "https://arxiv.org/abs/2501.12387"
+    },
+    {
+      "label": "Wald et al., RIO: 3D Object Instance Re-Localization in Changing Indoor Environments (3RScan, ICCV 2019)",
+      "href": "https://arxiv.org/abs/1908.06109"
+    },
+    {
+      "label": "ChangingGrounding: 3D Visual Grounding in Changing Scenes (2025)",
+      "href": "https://arxiv.org/abs/2510.14965"
+    }
+  ],
+  "tags": [
+    "VLM",
+    "Spatial Reasoning",
+    "Memory",
+    "Video Understanding"
+  ],
+  "type": [
+    "Guided Research",
+    "Master Thesis"
+  ],
+  "state": "open"
+}
